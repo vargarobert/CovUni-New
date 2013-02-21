@@ -150,11 +150,11 @@
     
     if (indexRow == 0 && indexSection == 2) {
         //SignOut
-        [self.userDefaults setObject:nil forKey:@"username"];
+        [self.userDefaults setObject:NULL forKey:@"token"];
         [self.userDefaults synchronize];
 
         UIViewController *login = [self.storyboard instantiateViewControllerWithIdentifier:@"loginPopUp"];
-        [self presentModalViewController:login animated:YES];
+        [self presentViewController:login animated:YES completion:nil];
     }
     
 }

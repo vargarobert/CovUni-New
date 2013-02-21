@@ -8,13 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-#define kPostURL @"http://creative.coventry.ac.uk/~sinclaig/api/index.php"
-#define kName @"name"
-#define kMessage @"password"
 
-@interface LoginViewController : UIViewController <UITextFieldDelegate> {
-    NSURLConnection *postConnection;
-}
+#define kPostURL @"http://creative.coventry.ac.uk/~sinclaig/api/index.php/account/authenticate"
+
+@interface LoginViewController : UIViewController <UITextFieldDelegate>
+
 
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;

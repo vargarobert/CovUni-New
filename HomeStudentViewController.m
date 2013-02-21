@@ -30,12 +30,12 @@
     [super viewDidLoad];
     
     self.userDefaults = [NSUserDefaults standardUserDefaults];
-    NSLog(@"%@",[self.userDefaults stringForKey:@"username"]);
+    NSLog(@"%@",[self.userDefaults stringForKey:@"token"]);
     
     //Veryfy if LOGGED IN
-    if (![self.userDefaults stringForKey:@"username"]) {
+    if (![self.userDefaults stringForKey:@"token"]) {
         UIViewController *login = [self.storyboard instantiateViewControllerWithIdentifier:@"loginPopUp"];
-        [self presentModalViewController:login animated:NO];
+        [self presentViewController:login animated:NO completion:nil];
     }
     
     //get news feeds on different thread

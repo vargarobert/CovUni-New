@@ -16,16 +16,54 @@
 
 @implementation LoginViewController
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     self.userDefaults = [NSUserDefaults standardUserDefaults];
-
+    
     [self customDesign];
     [self animSettings];
+    
 }
 
+//authorise the user
+-(void)loginAuth {
+    
+    if([self.usernameField.text isEqualToString:@""] || [self.passwordField.text isEqualToString:@""] ) {
+        
+        [self alertStatus:@"Please enter both Username and Password" :@"Login Failed!"];
+        self.usernameField.text = @"";
+        self.passwordField.text = @"";
+        
+    } else {
+        NSString *keys = [NSString stringWithFormat:@"username=%@&password=%@",self.usernameField.text,self.passwordField.text];
+        
+        NSURL *url=[NSURL URLWithString:kPostURL];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+        [request setHTTPMethod:@"POST"];
+        [request setHTTPBody:[keys dataUsingEncoding:NSUTF8StringEncoding]];
+        NSURLResponse *response;
+        NSError *error;
+        NSData *loginData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        NSArray *json = [NSJSONSerialization JSONObjectWithData:loginData options:kNilOptions error:&error];
+        NSLog(@"response data: %@", json);
+        if ([[json valueForKey:@"status"] isEqualToString:@"INVALID_LOGIN"]) {
+            NSLog(@"error");
+            [self alertStatus:@"Please revise your login credentials" :@"Login Failed!"];
+            self.usernameField.text = @"";
+            self.passwordField.text = @"";
+        } else {
+            [self.userDefaults setObject:[json valueForKey:@"token"] forKey:@"username"];
+            [self.userDefaults synchronize];
+            //dismiss LOGIN view
+            [self dismissViewControllerAnimated:NO completion:nil];
+
+            NSLog(@"SUCCESS %@", [json valueForKey:@"token"]);
+        }
+    }
+}
 
 
 //custom design method
@@ -42,7 +80,7 @@
     //self.usernameField.layer.cornerRadius = 15;
     self.usernameField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 0)];
     self.usernameField.leftViewMode = UITextFieldViewModeAlways;
-
+    
     //guest button
     self.guestButtonOutlet.layer.backgroundColor = [UIColor whiteColor].CGColor;
     self.guestButtonOutlet.layer.borderColor = [UIColor colorWithRed:1.0/255.0 green:99.0/255.0 blue:159.0/255.0 alpha:1.0].CGColor;
@@ -81,15 +119,15 @@
 }
 
 - (void)moveImage:(UIImageView *)image duration:(NSTimeInterval)duration curve:(int)curve x:(CGFloat)x y:(CGFloat)y {
-
+    
     // Setup the animation
     [UIView beginAnimations:@"slideLogo" context:NULL];
     [UIView setAnimationDuration:duration];
     [UIView setAnimationCurve:curve];
     [UIView setAnimationBeginsFromCurrentState:YES];
-        // The transform matrix
-        CGAffineTransform transform = CGAffineTransformMakeTranslation(x, y);
-        image.transform = transform;
+    // The transform matrix
+    CGAffineTransform transform = CGAffineTransformMakeTranslation(x, y);
+    image.transform = transform;
     // Commit the changes
     [UIView commitAnimations];
 }
@@ -99,14 +137,14 @@
     UIView *passwordView = [[self.view subviews] objectAtIndex:1];
     UIView *loginView = [[self.view subviews] objectAtIndex:2];
     UIView *guestView = [[self.view subviews] objectAtIndex:3];
-
+    
     [UIView beginAnimations:@"fadeLogin" context:nil];
     [UIView setAnimationDelay:.3];
     [UIView setAnimationDuration:.7];
-        usernameView.alpha = 1;
-        passwordView.alpha = 1;
-        loginView.alpha = 1;
-        guestView.alpha = 1;
+    usernameView.alpha = 1;
+    passwordView.alpha = 1;
+    loginView.alpha = 1;
+    guestView.alpha = 1;
     [UIView commitAnimations];
 }
 
@@ -125,7 +163,7 @@
     }
     return YES;
 }
-    
+
 - (void)viewDidUnload {
     [self setPasswordField:nil];
     [self setUsernameField:nil];
@@ -146,12 +184,15 @@
 }
 
 - (IBAction)loginButton:(id)sender {
-   
+    //dismiss keyboard
+    [self.view endEditing:YES];
+    
+    [self loginAuth];
 }
 
 - (IBAction)guestButton:(id)sender {
-    NSString *username = self.usernameField.text;
-    [self.userDefaults setObject:username forKey:@"username"];
+    NSString *token = @"guest";
+    [self.userDefaults setObject:token forKey:@"token"];
     [self.userDefaults synchronize];
     [self dismissViewControllerAnimated:NO completion:nil];
 }
