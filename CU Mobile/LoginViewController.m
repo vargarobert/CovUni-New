@@ -8,7 +8,7 @@
 
 #import "LoginViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "SBJson.h"
+
 
 @interface LoginViewController ()
 @property NSUserDefaults *userDefaults;
@@ -26,22 +26,7 @@
     [self animSettings];
 }
 
--(void)postMessage:(NSString*) message withName:(NSString *) name {
-    if (name != nil && message != nil) {
-        
-        NSMutableString *postString = [NSMutableString stringWithString:kPostURL];
-        [postString appendString:[NSString stringWithFormat:@"?%@=%@", kName, name]];
-        [postString appendString:[NSString stringWithFormat:@"&%@=%@", kMessage, message]];
-        //encode string
-        [postString setString:[postString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-        
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:postString]];
-        [request setHTTPMethod:@"POST"];
-        
-        postConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
-        
-    }
-}
+
 
 //custom design method
 -(void)customDesign {
@@ -161,67 +146,7 @@
 }
 
 - (IBAction)loginButton:(id)sender {
-    
-    @try {
-        
-        if([self.usernameField.text isEqualToString:@""] || [self.passwordField.text isEqualToString:@""] ) {
-            [self alertStatus:@"Please enter both Username and Password" :@"Login Failed!"];
-        } else {
-            NSString *post =[[NSString alloc] initWithFormat:@"username=%@&password=%@",self.usernameField.text,self.passwordField.text];
-            NSLog(@"PostData: %@",post);
-            
-            NSURL *url=[NSURL URLWithString:@"http://creative.coventry.ac.uk/~sinclaig/api/index.php"];
-            
-            NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-            
-            NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
-            
-            NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-            [request setURL:url];
-            [request setHTTPMethod:@"POST"];
-            [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-            [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-            [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-            [request setHTTPBody:postData];
-            
-            //[NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:[url host]];
-            
-            NSError *error = [[NSError alloc] init];
-            NSHTTPURLResponse *response = nil;
-            NSData *urlData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-            
-            NSLog(@"Response code: %d", [response statusCode]);
-            if ([response statusCode] >=200 && [response statusCode] <300)
-            {
-                NSString *responseData = [[NSString alloc]initWithData:urlData encoding:NSUTF8StringEncoding];
-                NSLog(@"Response ==> %@", responseData);
-                
-                SBJsonParser *jsonParser = [SBJsonParser new];
-                NSDictionary *jsonData = (NSDictionary *) [jsonParser objectWithString:responseData error:nil];
-                NSLog(@"%@",jsonData);
-                NSInteger success = [(NSNumber *) [jsonData objectForKey:@"success"] integerValue];
-                NSLog(@"%d",success);
-                if(success == 1)
-                {
-                    NSLog(@"Login SUCCESS");
-                    [self alertStatus:@"Logged in Successfully." :@"Login Success!"];
-                    
-                } else {
-                    
-                    NSString *error_msg = (NSString *) [jsonData objectForKey:@"error_message"];
-                    [self alertStatus:error_msg :@"Login Failed!"];
-                }
-                
-            } else {
-                if (error) NSLog(@"Error: %@", error);
-                [self alertStatus:@"Connection Failed" :@"Login Failed!"];
-            }
-        }
-    }
-    @catch (NSException * e) {
-        NSLog(@"Exception: %@", e);
-        [self alertStatus:@"Login Failed." :@"Login Failed!"];
-    }
+   
 }
 
 - (IBAction)guestButton:(id)sender {
