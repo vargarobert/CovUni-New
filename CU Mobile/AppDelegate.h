@@ -13,9 +13,3 @@
 @property (strong, nonatomic) UIWindow *window;
 
 @end
-//code new
-//damian has done
-
-//code lost
-
-//this is my code robert
