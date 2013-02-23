@@ -11,6 +11,6 @@
 #import "ECSlidingViewController.h"
 #import "MenuStudentViewController.h"
 
-@interface SettingsStudentViewController : UITableViewController
+@interface SettingsStudentViewController : UITableViewController 
 
 @end

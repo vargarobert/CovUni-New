@@ -36,7 +36,7 @@
     if (![self.userDefaults stringForKey:@"token"]) {
         UIViewController *login = [self.storyboard instantiateViewControllerWithIdentifier:@"loginPopUp"];
         [self presentViewController:login animated:NO completion:nil];
-    }
+    } 
     
     //get news feeds on different thread
     [self performSelectorInBackground:@selector(newsFeed) withObject:nil];
