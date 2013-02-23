@@ -147,14 +147,24 @@
     int indexRow = [indexPath row];
     int indexSection = [indexPath section];
     
-    
+    //SignOut
     if (indexRow == 0 && indexSection == 2) {
-        //SignOut
+        
+        //Reset top view
+        UIViewController *newTopViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HomeStudent"];
+        [self.slidingViewController resetTopViewWithAnimations:nil onComplete:^{
+            CGRect frame = self.slidingViewController.topViewController.view.frame;
+            self.slidingViewController.topViewController = newTopViewController;
+            self.slidingViewController.topViewController.view.frame = frame;
+            [self.slidingViewController resetTopView];
+        }];
+
+        //removes token
         [self.userDefaults setObject:NULL forKey:@"token"];
         [self.userDefaults synchronize];
-
-        UIViewController *login = [self.storyboard instantiateViewControllerWithIdentifier:@"loginPopUp"];
-        [self presentViewController:login animated:YES completion:nil];
+        
+        //UIViewController *login = [self.storyboard instantiateViewControllerWithIdentifier:@"loginPopUp"];
+        //[self presentViewController:login animated:YES completion:nil];
     }
     
 }

@@ -31,6 +31,7 @@
 //authorise the user
 -(void)loginAuth {
     
+    //check if one of the fieds are empty
     if([self.usernameField.text isEqualToString:@""] || [self.passwordField.text isEqualToString:@""] ) {
         
         [self alertStatus:@"Please enter both Username and Password" :@"Login Failed!"];
