@@ -8,6 +8,7 @@
 
 #import "YouTubeCell.h"
 
+
 @implementation YouTubeCell
 @synthesize image, title, views, date, time;
 
@@ -30,8 +31,8 @@
     image.layer.borderWidth = 1.0;
     
     //Title label settings
-    title.frame = CGRectMake(112.0, 29.0, 180.0, 15);
-    title.font = [UIFont fontWithName:@"Arial" size:13.0];
+    title.frame = CGRectMake(112.0, 29.0, 180.0, 15.0);
+    title.font = [UIFont fontWithName:@"Arial" size:14.0];
     [title sizeToFit];
     
     //Views label settings

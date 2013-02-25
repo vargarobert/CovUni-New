@@ -7,6 +7,8 @@
 //
 
 #import "HomeStudentViewController.h"
+#import "MBProgressHUD.h"
+#import "NewsCell.h"
 
 @interface HomeStudentViewController ()
 @property NSUserDefaults *userDefaults;
@@ -38,12 +40,20 @@
         [self presentViewController:login animated:NO completion:nil];
     }
     
-    //get news feeds on different thread
-    [self performSelectorInBackground:@selector(newsFeed) withObject:nil];
+    //Display progress hub white selector performed on different thread
+    [self mbProgressHubWithSelector:@selector(newsFeed)];
     
     [self customDesign];
     [self sidebarMenu];
 
+}
+
+//Display progress hub (custom activity indicator)
+-(void)mbProgressHubWithSelector:(SEL)mySelector {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"Loading";
+    [hud showWhileExecuting:mySelector onTarget:self withObject:nil animated:YES];
 }
 
 
@@ -56,6 +66,10 @@
     if (data) {
         self.news = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     }
+    //Switch network indicator off
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
+    //Reload UITableView data
     [self.tableView reloadData];
 }
 
@@ -115,14 +129,16 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"NewsCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    NewsCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
     
     NSDictionary *item = [self.news objectAtIndex:indexPath.row];
-    cell.textLabel.text = [item objectForKey:@"title"];
-    cell.detailTextLabel.text = [item objectForKey:@"description"];
-    cell.detailTextLabel.numberOfLines = 3;
+    
+    
+    cell.title.text = [item objectForKey:@"title"];
+    cell.content.text = [item objectForKey:@"description"];
+
 
     
     return cell;

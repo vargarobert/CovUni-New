@@ -7,6 +7,9 @@
 //
 
 #import "MoodleStudentViewController.h"
+#import "MBProgressHUD.h"
+#import "MoodleCell.h"
+#import "MoodleModuleDetailsViewController.h"
 
 @interface MoodleStudentViewController ()
 
@@ -29,10 +32,18 @@
 {
     [super viewDidLoad];
 
-    //get news feeds on different thread
-    [self performSelectorInBackground:@selector(moodleFeed) withObject:nil];
+    //Display progress hub white selector performed on different thread
+    [self mbProgressHubWithSelector:@selector(moodleFeed)];
     
     [self customDesign]; 
+}
+
+//Display progress hub (custom activity indicator)
+-(void)mbProgressHubWithSelector:(SEL)mySelector {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"Loading";
+    [hud showWhileExecuting:mySelector onTarget:self withObject:nil animated:YES];
 }
 
 
@@ -52,6 +63,10 @@
         NSLog(@"urldata: %@",[[NSString alloc]initWithData:urlData encoding:NSUTF8StringEncoding]);
         self.moodle = [NSJSONSerialization JSONObjectWithData:urlData options:kNilOptions error:&error];
     }
+    //Switch network indicator off
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
+    //Reload UITableView data
     [self.tableView reloadData];
 }
 
@@ -97,12 +112,30 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"moodleCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    MoodleCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    cell.textLabel.text = [[self.moodle objectAtIndex:indexPath.row] objectForKey:@"name"];
-    cell.detailTextLabel.text = [[self.moodle objectAtIndex:indexPath.row] objectForKey:@"moduleleader"];
+    
+    cell.moduleName.text = [[self.moodle objectAtIndex:indexPath.row] objectForKey:@"name"];
+    cell.moduleName.numberOfLines = 2;
+    cell.moduleCode.text = [[self.moodle objectAtIndex:indexPath.row] objectForKey:@"moduleid"];
+    cell.moduleLeader.text = [[self.moodle objectAtIndex:indexPath.row] objectForKey:@"moduleleader"];
+    
+    //Image using SDWebCache library for lazy loading
+    [cell.thumbnail setImageWithURL:[[self.moodle objectAtIndex:indexPath.row] objectForKey:@"thumbnail"]];
+    
+
     
     return cell;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"moduleDetailsSegue"]) {
+        NSIndexPath *cellPath = [self.tableView indexPathForCell:sender];
+        NSString *moduleCode = [[self.moodle objectAtIndex:cellPath.row] objectForKey:@"moduleid"];
+        MoodleModuleDetailsViewController *mmdvc = [segue destinationViewController];
+        mmdvc.moduleId = moduleCode;
+        
+    }
 }
 
 

@@ -7,6 +7,7 @@
 //
 
 #import "SolarCell.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation SolarCell
 
@@ -26,30 +27,28 @@
     [super setSelected:selected animated:animated];
 
     //Module name settings
-    moduleName.frame = CGRectMake(22.0, 26.0, 194.0, 33.0);
-    moduleName.font = [UIFont fontWithName:@"Arial" size:13.0];
-    moduleName.numberOfLines = 2;
+    moduleName.frame = CGRectMake(22.0, 28.0, 194.0, 18.0);
+    moduleName.font = [UIFont fontWithName:@"Arial" size:14.0];
+    [moduleName sizeToFit];
     
     
     //Module code settings
-    moduleCode.frame = CGRectMake(7.0, 26.0, 62.0, 21.0);
-    moduleCode.font = [UIFont fontWithName:@"Arial" size:13.0]
+    moduleCode.frame = CGRectMake(22.0, 10.0, 62.0, 21.0);
+    moduleCode.font = [UIFont fontWithName:@"Arial" size:13.0];
     moduleCode.textColor = [UIColor lightGrayColor];
     
     //Module result settings
-    moduleResult.frame = CGRectMake(254.0, 16.0, 46.0, 43.0);
-    moduleResult.font = [UIFont fontWithName:@"Arial Bold" size:12.0];
-    views.textColor = [UIColor lightGrayColor];
+    moduleResult.frame = CGRectMake(254.0, 22.0, 35.0, 35.0);
+    moduleResult.font = [UIFont fontWithName:@"Arial Bold" size:11.0];
+    moduleResult.textColor = [UIColor blackColor];
+    moduleResult.shadowColor = [UIColor lightGrayColor];
+    moduleResult.shadowOffset = CGSizeMake(1.0, 1.0);
+    moduleResult.layer.cornerRadius = 5.0;
+    moduleResult.layer.masksToBounds = YES;
+    moduleResult.layer.borderColor = [UIColor grayColor].CGColor;
+    moduleResult.layer.borderWidth = 1.0;
     
-    //Date label settings
-    date.frame = CGRectMake(112.0, 13.0, 90.0, 14.0);
-    date.font = [UIFont fontWithName:@"Arial" size:12.0];
-    date.textColor = [UIColor lightGrayColor];
     
-    //Time label settings
-    time.frame = CGRectMake(112.0, 65.0, 60.0, 14.0);
-    time.font = [UIFont fontWithName:@"Arial-BoldMT" size:12.0];
-    time.textColor = [UIColor blackColor];
 }
 
 @end

@@ -8,6 +8,7 @@
 
 #import "SolarStudentViewController.h"
 #import "SolarCell.h"
+#import "MBProgressHUD.h"
 
 @interface SolarStudentViewController ()
 @property (nonatomic, strong) NSMutableArray *solar;
@@ -29,10 +30,18 @@
 {
     [super viewDidLoad];
     
-    //get library feeds on different thread
-    [self performSelectorInBackground:@selector(solarFeed) withObject:nil];
+    //Display progress hub white selector performed on different thread
+    [self mbProgressHubWithSelector:@selector(solarFeed)];
     
     [self customDesign];
+}
+
+//Display progress hub (custom activity indicator)
+-(void)mbProgressHubWithSelector:(SEL)mySelector {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"Loading";
+    [hud showWhileExecuting:mySelector onTarget:self withObject:nil animated:YES];
 }
 
 
@@ -54,6 +63,10 @@
         NSLog(@"solar: %@", [NSJSONSerialization JSONObjectWithData:urlData options:kNilOptions error:&error]);
         self.solar = [NSJSONSerialization JSONObjectWithData:urlData options:kNilOptions error:&error];
     }
+    //Switch network indicator off
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
+    //Reload UITableView data
     [self.tableView reloadData];
 }
 
@@ -100,6 +113,21 @@
 {
     static NSString *CellIdentifier = @"solarCell";
     SolarCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    // Custom background color depended on grade value
+    int grade = [[[self.solar objectAtIndex:indexPath.row] objectForKey:@"grade"] intValue];
+    if (grade >= 70) {
+        cell.moduleResult.backgroundColor = [UIColor colorWithRed:160.0/255 green:176.0/255 blue:70.0/255 alpha:1.0];
+    }
+    else if ( grade < 70 && grade >= 50) {
+        cell.moduleResult.backgroundColor = [UIColor colorWithRed:242.0/255 green:201.0/255 blue:78.0/255 alpha:1.0];
+    }
+    else if ( grade >= 40 && grade <50 ) {
+        cell.moduleResult.backgroundColor = [UIColor colorWithRed:247.0/255 green:129.0/255 blue:69.0/255 alpha:1.0];
+    }
+    else {
+        cell.moduleResult.backgroundColor = [UIColor colorWithRed:242.0/255 green:78.0/255 blue:78.0/255 alpha:1.0];
+    }
     
     cell.moduleCode.text = [[self.solar objectAtIndex:indexPath.row] objectForKey:@"module"];
     cell.moduleResult.text = [[self.solar objectAtIndex:indexPath.row] objectForKey:@"grade"];
