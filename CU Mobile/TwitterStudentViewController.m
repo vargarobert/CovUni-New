@@ -7,6 +7,7 @@
 //
 
 #import "TwitterStudentViewController.h"
+#import "MBProgressHUD.h"
 
 @interface TwitterStudentViewController ()
 @property (nonatomic, strong) NSMutableArray *tweets;
@@ -27,10 +28,19 @@
 {
     [super viewDidLoad];
     
+    //Display progress hub white selector performed on different thread
+    [self mbProgressHubWithSelector:@selector(tweetRequest)];
+    
     
     [self customDesign];
-    
-    [self performSelectorInBackground:@selector(tweetRequest) withObject:nil];
+}
+
+//Display progress hub (custom activity indicator)
+-(void)mbProgressHubWithSelector:(SEL)mySelector {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"Loading";
+    [hud showWhileExecuting:mySelector onTarget:self withObject:nil animated:YES];
 }
 
 
@@ -44,8 +54,12 @@
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
         self.tweets = [json objectForKey:@"results"];
     }
+    //Switch network indicator off
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
+    //Reload UITableView data
     [self.tableView reloadData];
+
 }
 
 

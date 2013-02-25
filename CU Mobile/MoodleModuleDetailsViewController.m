@@ -1,20 +1,21 @@
 //
-//  LibraryStudentViewController.m
+//  MoodleModuleDetailsViewController.m
 //  CU Mobile
 //
-//  Created by Damian on 20/02/2013.
+//  Created by Damian on 25/02/2013.
 //  Copyright (c) 2013 Robert Varga. All rights reserved.
 //
 
-#import "LibraryStudentViewController.h"
+#import "MoodleModuleDetailsViewController.h"
 #import "MBProgressHUD.h"
+#import "FileCell.h"
 
-@interface LibraryStudentViewController ()
-@property (nonatomic, strong) NSMutableArray *library;
+@interface MoodleModuleDetailsViewController ()
 
 @end
 
-@implementation LibraryStudentViewController
+@implementation MoodleModuleDetailsViewController
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -30,9 +31,8 @@
     [super viewDidLoad];
     
     //Display progress hub white selector performed on different thread
-    [self mbProgressHubWithSelector:@selector(libraryFeed)];
+    [self mbProgressHubWithSelector:@selector(moduleFeed)];
     
-    [self customDesign];
 }
 
 //Display progress hub (custom activity indicator)
@@ -44,8 +44,9 @@
 }
 
 
--(void)libraryFeed {
-    NSURL *url=[NSURL URLWithString:@"http://creative.coventry.ac.uk/~sinclaig/api/index.php/library/loaned"];
+-(void)moduleFeed {
+    NSString *urlString = [[NSString alloc] initWithFormat:@"http://creative.coventry.ac.uk/~sinclaig/api/index.php/moodle/files/id/%@",self.moduleId];
+    NSURL *url=[NSURL URLWithString:urlString];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:url];
@@ -57,38 +58,14 @@
     NSData *urlData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     
     if (urlData) {
-        self.library = [NSJSONSerialization JSONObjectWithData:urlData options:kNilOptions error:&error];
+        NSLog(@"urldata: %@",[[NSString alloc]initWithData:urlData encoding:NSUTF8StringEncoding]);
+        self.moduleFiles = [NSJSONSerialization JSONObjectWithData:urlData options:kNilOptions error:&error];
     }
     //Switch network indicator off
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
     //Reload UITableView data
     [self.tableView reloadData];
-
-}
-
-
--(void)customDesign {
-    // nav bar
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"top_bar.png"] forBarMetrics:UIBarMetricsDefault];
-    
-    //back button color  #2974c3
-    [self.navigationController.navigationBar setTintColor:[UIColor colorWithRed:41.0/255.0f green:116.0/255.0f blue:195.0/255.0f alpha:1.0]];
-    
-    //settings button
-    UIImage* settingsImage = [UIImage imageNamed:@"ButtonMenu.png"];
-    CGRect frameimg = CGRectMake(0, 0, settingsImage.size.width, settingsImage.size.height);
-    UIButton *uiSettingsButton = [[UIButton alloc] initWithFrame:frameimg];
-    [uiSettingsButton setBackgroundImage:settingsImage forState:UIControlStateNormal];
-    [uiSettingsButton addTarget:self action:@selector(menuButton) forControlEvents:UIControlEventTouchUpInside];
-    [uiSettingsButton setShowsTouchWhenHighlighted:YES];
-    //add buton to navbar
-    UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithCustomView:uiSettingsButton];
-    self.navigationItem.leftBarButtonItem = settingsButton;
-}
-
--(void)menuButton {
-    [self.slidingViewController anchorTopViewTo:ECRight];
 }
 
 
@@ -103,21 +80,48 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return self.library.count;
+    return self.moduleFiles.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"libraryCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"fileCell";
+    FileCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     
-    cell.textLabel.text = [[self.library objectAtIndex:indexPath.row] objectForKey:@"title"];
-    cell.detailTextLabel.text = [[self.library objectAtIndex:indexPath.row] objectForKey:@"author"];
+    cell.filename.text = [[self.moduleFiles objectAtIndex:indexPath.row] objectForKey:@"name"];
     
+    NSString *type = [[NSString alloc] initWithFormat:@"%@",[[self.moduleFiles objectAtIndex:indexPath.row] objectForKey:@"type"]];
+                      
+    if ([type isEqualToString:@".html"] ) {
+        cell.icon.image = [UIImage imageNamed:@"Internet.png"];
+    }
+    else if ([type isEqualToString:@".txt"] ) {
+        cell.icon.image = [UIImage imageNamed:@"txt.png"];
+    }
+    else if ([type isEqualToString:@".pdf"] ) {
+        cell.icon.image = [UIImage imageNamed:@"PDF.png"];
+    }
+    else if ([type isEqualToString:@".zip"] ) {
+        cell.icon.image = [UIImage imageNamed:@"Zip.png"];
+    }
+    else if ([type isEqualToString:@".docx"] ) {
+        cell.icon.image = [UIImage imageNamed:@"Word.png"];
+    }
+    else if ([type isEqualToString:@".pptx"] ) {
+        cell.icon.image = [UIImage imageNamed:@"Powerpoint.png"];
+    }
+    else if ([type isEqualToString:@".xlsx"] ) {
+        cell.icon.image = [UIImage imageNamed:@"Excel.png"];
+    }
+    else {
+        cell.icon.image = [UIImage imageNamed:@"Unknown.png"];
+    };
+    
+    NSLog(@"url: %@",[NSString stringWithFormat:@"%@",[[self.moduleFiles objectAtIndex:indexPath.row] objectForKey:@"url"]]);
+
     return cell;
 }
-
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

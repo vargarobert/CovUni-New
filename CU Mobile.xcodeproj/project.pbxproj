@@ -32,6 +32,19 @@
 		2D90060416D65A590073536B /* solar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D9005FB16D65A580073536B /* solar@2x.png */; };
 		2D90060516D65A590073536B /* twitternew@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D9005FC16D65A580073536B /* twitternew@2x.png */; };
 		2D90060616D65A590073536B /* youtube@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D9005FD16D65A590073536B /* youtube@2x.png */; };
+		2D90061816D7A52A0073536B /* SolarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D90061716D7A52A0073536B /* SolarCell.m */; };
+		2D9DF84716DBADCE00A5ED8E /* MoodleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9DF84616DBADCE00A5ED8E /* MoodleCell.m */; };
+		2D9DF85216DBC02400A5ED8E /* Excel.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D9DF84A16DBC02400A5ED8E /* Excel.png */; };
+		2D9DF85316DBC02400A5ED8E /* Internet.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D9DF84B16DBC02400A5ED8E /* Internet.png */; };
+		2D9DF85416DBC02400A5ED8E /* PDF.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D9DF84C16DBC02400A5ED8E /* PDF.png */; };
+		2D9DF85516DBC02400A5ED8E /* Powerpoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D9DF84D16DBC02400A5ED8E /* Powerpoint.png */; };
+		2D9DF85616DBC02400A5ED8E /* txt.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D9DF84E16DBC02400A5ED8E /* txt.png */; };
+		2D9DF85716DBC02400A5ED8E /* Unknown.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D9DF84F16DBC02400A5ED8E /* Unknown.png */; };
+		2D9DF85816DBC02400A5ED8E /* Word.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D9DF85016DBC02400A5ED8E /* Word.png */; };
+		2D9DF85916DBC02400A5ED8E /* Zip.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D9DF85116DBC02400A5ED8E /* Zip.png */; };
+		2D9DF85C16DBC1C800A5ED8E /* MoodleModuleDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9DF85B16DBC1C700A5ED8E /* MoodleModuleDetailsViewController.m */; };
+		2D9DF85F16DBDBF700A5ED8E /* FileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9DF85E16DBDBF500A5ED8E /* FileCell.m */; };
+		2D9DF86216DC0C2600A5ED8E /* NewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9DF86116DC0C2600A5ED8E /* NewsCell.m */; };
 		2DD5F1A416D3D0FF003487BA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD5F1A316D3D0FF003487BA /* MapKit.framework */; };
 		2DD5F1AA16D3D361003487BA /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD5F1A916D3D361003487BA /* ImageIO.framework */; };
 		2DD5F1D416D3DAB5003487BA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD5F1D316D3DAB5003487BA /* UIKit.framework */; };
@@ -143,6 +156,24 @@
 		2D9005FB16D65A580073536B /* solar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "solar@2x.png"; sourceTree = "<group>"; };
 		2D9005FC16D65A580073536B /* twitternew@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitternew@2x.png"; sourceTree = "<group>"; };
 		2D9005FD16D65A590073536B /* youtube@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "youtube@2x.png"; sourceTree = "<group>"; };
+		2D90061616D7A52A0073536B /* SolarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolarCell.h; sourceTree = "<group>"; };
+		2D90061716D7A52A0073536B /* SolarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolarCell.m; sourceTree = "<group>"; };
+		2D9DF84516DBADCD00A5ED8E /* MoodleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoodleCell.h; sourceTree = "<group>"; };
+		2D9DF84616DBADCE00A5ED8E /* MoodleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoodleCell.m; sourceTree = "<group>"; };
+		2D9DF84A16DBC02400A5ED8E /* Excel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Excel.png; sourceTree = "<group>"; };
+		2D9DF84B16DBC02400A5ED8E /* Internet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Internet.png; sourceTree = "<group>"; };
+		2D9DF84C16DBC02400A5ED8E /* PDF.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PDF.png; sourceTree = "<group>"; };
+		2D9DF84D16DBC02400A5ED8E /* Powerpoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Powerpoint.png; sourceTree = "<group>"; };
+		2D9DF84E16DBC02400A5ED8E /* txt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = txt.png; sourceTree = "<group>"; };
+		2D9DF84F16DBC02400A5ED8E /* Unknown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Unknown.png; sourceTree = "<group>"; };
+		2D9DF85016DBC02400A5ED8E /* Word.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Word.png; sourceTree = "<group>"; };
+		2D9DF85116DBC02400A5ED8E /* Zip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Zip.png; sourceTree = "<group>"; };
+		2D9DF85A16DBC1C600A5ED8E /* MoodleModuleDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoodleModuleDetailsViewController.h; sourceTree = "<group>"; };
+		2D9DF85B16DBC1C700A5ED8E /* MoodleModuleDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoodleModuleDetailsViewController.m; sourceTree = "<group>"; };
+		2D9DF85D16DBDBF400A5ED8E /* FileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileCell.h; sourceTree = "<group>"; };
+		2D9DF85E16DBDBF500A5ED8E /* FileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileCell.m; sourceTree = "<group>"; };
+		2D9DF86016DC0C2500A5ED8E /* NewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCell.h; sourceTree = "<group>"; };
+		2D9DF86116DC0C2600A5ED8E /* NewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCell.m; sourceTree = "<group>"; };
 		2DD5F1A316D3D0FF003487BA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		2DD5F1A916D3D361003487BA /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		2DD5F1D316D3DAB5003487BA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -251,6 +282,21 @@
 			name = MBProgressHUD;
 			sourceTree = "<group>";
 		};
+		2D9DF84916DBBFFE00A5ED8E /* filetypesicons */ = {
+			isa = PBXGroup;
+			children = (
+				2D9DF84A16DBC02400A5ED8E /* Excel.png */,
+				2D9DF84B16DBC02400A5ED8E /* Internet.png */,
+				2D9DF84C16DBC02400A5ED8E /* PDF.png */,
+				2D9DF84D16DBC02400A5ED8E /* Powerpoint.png */,
+				2D9DF84E16DBC02400A5ED8E /* txt.png */,
+				2D9DF84F16DBC02400A5ED8E /* Unknown.png */,
+				2D9DF85016DBC02400A5ED8E /* Word.png */,
+				2D9DF85116DBC02400A5ED8E /* Zip.png */,
+			);
+			name = filetypesicons;
+			sourceTree = "<group>";
+		};
 		7502E2DC16A07B890004A901 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
@@ -337,6 +383,14 @@
 				2DDDDC7C16B08ED900CDB4E3 /* YouTubeCell.m */,
 				2DE1B3C216B5782B00E3C3E6 /* LoadMoreCell.h */,
 				2DE1B3C316B5782B00E3C3E6 /* LoadMoreCell.m */,
+				2D9DF84516DBADCD00A5ED8E /* MoodleCell.h */,
+				2D9DF84616DBADCE00A5ED8E /* MoodleCell.m */,
+				2D90061616D7A52A0073536B /* SolarCell.h */,
+				2D90061716D7A52A0073536B /* SolarCell.m */,
+				2D9DF85D16DBDBF400A5ED8E /* FileCell.h */,
+				2D9DF85E16DBDBF500A5ED8E /* FileCell.m */,
+				2D9DF86016DC0C2500A5ED8E /* NewsCell.h */,
+				2D9DF86116DC0C2600A5ED8E /* NewsCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -391,6 +445,8 @@
 				756376E916B1A23B0052652E /* HomeStudentViewController.m */,
 				2D9005C916D512C60073536B /* MoodleStudentViewController.h */,
 				2D9005CA16D512C70073536B /* MoodleStudentViewController.m */,
+				2D9DF85A16DBC1C600A5ED8E /* MoodleModuleDetailsViewController.h */,
+				2D9DF85B16DBC1C700A5ED8E /* MoodleModuleDetailsViewController.m */,
 				2D9005CD16D5258D0073536B /* LibraryStudentViewController.h */,
 				2D9005CE16D5258E0073536B /* LibraryStudentViewController.m */,
 				2D9005D516D528790073536B /* SolarStudentViewController.h */,
@@ -427,6 +483,7 @@
 		75E434A9168E13FB0073122D /* images */ = {
 			isa = PBXGroup;
 			children = (
+				2D9DF84916DBBFFE00A5ED8E /* filetypesicons */,
 				758836BB168F265500A82A7E /* icons */,
 				758836BA168F264200A82A7E /* miscellaneous */,
 			);
@@ -552,6 +609,14 @@
 				2D90060416D65A590073536B /* solar@2x.png in Resources */,
 				2D90060516D65A590073536B /* twitternew@2x.png in Resources */,
 				2D90060616D65A590073536B /* youtube@2x.png in Resources */,
+				2D9DF85216DBC02400A5ED8E /* Excel.png in Resources */,
+				2D9DF85316DBC02400A5ED8E /* Internet.png in Resources */,
+				2D9DF85416DBC02400A5ED8E /* PDF.png in Resources */,
+				2D9DF85516DBC02400A5ED8E /* Powerpoint.png in Resources */,
+				2D9DF85616DBC02400A5ED8E /* txt.png in Resources */,
+				2D9DF85716DBC02400A5ED8E /* Unknown.png in Resources */,
+				2D9DF85816DBC02400A5ED8E /* Word.png in Resources */,
+				2D9DF85916DBC02400A5ED8E /* Zip.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -583,6 +648,11 @@
 				2D9005CF16D5258E0073536B /* LibraryStudentViewController.m in Sources */,
 				2D9005D716D528790073536B /* SolarStudentViewController.m in Sources */,
 				2D9005E216D60CA10073536B /* MBProgressHUD.m in Sources */,
+				2D90061816D7A52A0073536B /* SolarCell.m in Sources */,
+				2D9DF84716DBADCE00A5ED8E /* MoodleCell.m in Sources */,
+				2D9DF85C16DBC1C800A5ED8E /* MoodleModuleDetailsViewController.m in Sources */,
+				2D9DF85F16DBDBF700A5ED8E /* FileCell.m in Sources */,
+				2D9DF86216DC0C2600A5ED8E /* NewsCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
