@@ -32,6 +32,7 @@
 		2D90060416D65A590073536B /* solar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D9005FB16D65A580073536B /* solar@2x.png */; };
 		2D90060516D65A590073536B /* twitternew@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D9005FC16D65A580073536B /* twitternew@2x.png */; };
 		2D90060616D65A590073536B /* youtube@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D9005FD16D65A590073536B /* youtube@2x.png */; };
+		2D90061816D7A52A0073536B /* SolarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D90061716D7A52A0073536B /* SolarCell.m */; };
 		2DD5F1A416D3D0FF003487BA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD5F1A316D3D0FF003487BA /* MapKit.framework */; };
 		2DD5F1AA16D3D361003487BA /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD5F1A916D3D361003487BA /* ImageIO.framework */; };
 		2DD5F1D416D3DAB5003487BA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD5F1D316D3DAB5003487BA /* UIKit.framework */; };
@@ -143,6 +144,8 @@
 		2D9005FB16D65A580073536B /* solar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "solar@2x.png"; sourceTree = "<group>"; };
 		2D9005FC16D65A580073536B /* twitternew@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitternew@2x.png"; sourceTree = "<group>"; };
 		2D9005FD16D65A590073536B /* youtube@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "youtube@2x.png"; sourceTree = "<group>"; };
+		2D90061616D7A52A0073536B /* SolarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolarCell.h; sourceTree = "<group>"; };
+		2D90061716D7A52A0073536B /* SolarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolarCell.m; sourceTree = "<group>"; };
 		2DD5F1A316D3D0FF003487BA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		2DD5F1A916D3D361003487BA /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		2DD5F1D316D3DAB5003487BA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -337,6 +340,8 @@
 				2DDDDC7C16B08ED900CDB4E3 /* YouTubeCell.m */,
 				2DE1B3C216B5782B00E3C3E6 /* LoadMoreCell.h */,
 				2DE1B3C316B5782B00E3C3E6 /* LoadMoreCell.m */,
+				2D90061616D7A52A0073536B /* SolarCell.h */,
+				2D90061716D7A52A0073536B /* SolarCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -583,6 +588,7 @@
 				2D9005CF16D5258E0073536B /* LibraryStudentViewController.m in Sources */,
 				2D9005D716D528790073536B /* SolarStudentViewController.m in Sources */,
 				2D9005E216D60CA10073536B /* MBProgressHUD.m in Sources */,
+				2D90061816D7A52A0073536B /* SolarCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

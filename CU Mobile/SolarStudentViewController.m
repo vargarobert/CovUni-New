@@ -7,6 +7,7 @@
 //
 
 #import "SolarStudentViewController.h"
+#import "SolarCell.h"
 
 @interface SolarStudentViewController ()
 @property (nonatomic, strong) NSMutableArray *solar;
@@ -50,6 +51,7 @@
     NSData *urlData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     
     if (urlData) {
+        NSLog(@"solar: %@", [NSJSONSerialization JSONObjectWithData:urlData options:kNilOptions error:&error]);
         self.solar = [NSJSONSerialization JSONObjectWithData:urlData options:kNilOptions error:&error];
     }
     [self.tableView reloadData];
@@ -97,10 +99,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"solarCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    SolarCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    cell.textLabel.text = [[self.solar objectAtIndex:indexPath.row] objectForKey:@"module"];
-    cell.detailTextLabel.text = [[self.solar objectAtIndex:indexPath.row] objectForKey:@"grade"];
+    cell.moduleCode.text = [[self.solar objectAtIndex:indexPath.row] objectForKey:@"module"];
+    cell.moduleResult.text = [[self.solar objectAtIndex:indexPath.row] objectForKey:@"grade"];
+    cell.moduleName.text = [[self.solar objectAtIndex:indexPath.row] objectForKey:@"name"];
     
     return cell;
 }
