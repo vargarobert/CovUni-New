@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *moduleCode;
 @property (weak, nonatomic) IBOutlet UILabel *moduleName;
 @property (weak, nonatomic) IBOutlet UILabel *moduleResult;
+@property (nonatomic, strong) IBOutlet UIImageView* bgImageView;
 
 
 @end

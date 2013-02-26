@@ -11,7 +11,7 @@
 
 @implementation SolarCell
 
-@synthesize moduleCode, moduleName, moduleResult;
+@synthesize moduleCode, moduleName, moduleResult, bgImageView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -26,16 +26,27 @@
 {
     [super setSelected:selected animated:animated];
 
+    //BG image
+    UIImage* bg = [UIImage imageNamed:@"ipad-list-element.png"];
+    [bgImageView setImage:bg];
+    
+    
     //Module name settings
     moduleName.frame = CGRectMake(22.0, 28.0, 194.0, 18.0);
-    moduleName.font = [UIFont fontWithName:@"Arial" size:14.0];
+    [moduleName setTextColor:[UIColor colorWithRed:113.0/255 green:133.0/255 blue:148.0/255 alpha:1.0]];
+    [moduleName setShadowColor:[UIColor whiteColor]];
+    [moduleName setShadowOffset:CGSizeMake(0, 1)];
+//    moduleName.font = [UIFont fontWithName:@"Arial" size:14.0];
     [moduleName sizeToFit];
     
     
     //Module code settings
-    moduleCode.frame = CGRectMake(22.0, 10.0, 62.0, 21.0);
-    moduleCode.font = [UIFont fontWithName:@"Arial" size:13.0];
-    moduleCode.textColor = [UIColor lightGrayColor];
+    moduleCode.frame = CGRectMake(22.0, 10.0, 72.0, 21.0);
+    [moduleCode setTextColor:[UIColor colorWithRed:0.0 green:68.0/255 blue:118.0/255 alpha:1.0]];
+    [moduleCode setShadowColor:[UIColor whiteColor]];
+    [moduleCode setShadowOffset:CGSizeMake(0, 1)];
+//    moduleCode.font = [UIFont fontWithName:@"Arial" size:13.0];
+//    moduleCode.textColor = [UIColor lightGrayColor];
     
     //Module result settings
     moduleResult.frame = CGRectMake(254.0, 22.0, 35.0, 35.0);
