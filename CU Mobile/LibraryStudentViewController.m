@@ -8,6 +8,8 @@
 
 #import "LibraryStudentViewController.h"
 #import "MBProgressHUD.h"
+#import "LibraryCell.h"
+
 
 @interface LibraryStudentViewController ()
 @property (nonatomic, strong) NSMutableArray *library;
@@ -69,6 +71,9 @@
 
 
 -(void)customDesign {
+    //background pattern
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"BG-pattern.png"]];
+    
     // nav bar
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"top_bar.png"] forBarMetrics:UIBarMetricsDefault];
     
@@ -109,11 +114,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"libraryCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    LibraryCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     
-    cell.textLabel.text = [[self.library objectAtIndex:indexPath.row] objectForKey:@"title"];
-    cell.detailTextLabel.text = [[self.library objectAtIndex:indexPath.row] objectForKey:@"author"];
+    cell.title.text = [[self.library objectAtIndex:indexPath.row] objectForKey:@"title"];
+    cell.author.text = [[self.library objectAtIndex:indexPath.row] objectForKey:@"author"];
     
     return cell;
 }

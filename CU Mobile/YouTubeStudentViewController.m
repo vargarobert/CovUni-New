@@ -104,6 +104,9 @@
 }
 
 -(void)customDesign {
+    //background pattern
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"BG-pattern.png"]];
+    
     // nav bar
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"top_bar.png"] forBarMetrics:UIBarMetricsDefault];
     

@@ -33,6 +33,8 @@
     //Display progress hub white selector performed on different thread
     [self mbProgressHubWithSelector:@selector(moduleFeed)];
     
+    //background pattern
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"BG-pattern.png"]];
 }
 
 //Display progress hub (custom activity indicator)
