@@ -49,7 +49,6 @@
     self.navigationItem.title = @"Menu                   ";
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"menu_bar.jpg"] forBarMetrics:UIBarMetricsDefault];
     
-
 }
 
 
@@ -141,6 +140,14 @@
         self.slidingViewController.topViewController.view.frame = frame;
         [self.slidingViewController resetTopView];
     }];
+    
+    //shadow on the view selected
+    newTopViewController.view.layer.shadowOpacity = 0.75f;
+    newTopViewController.view.layer.shadowRadius = 10.0f;
+    newTopViewController.view.layer.shadowColor = [UIColor blackColor].CGColor;
+
+    
+   
 }
 
 

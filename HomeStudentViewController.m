@@ -30,6 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     
     self.userDefaults = [NSUserDefaults standardUserDefaults];
     NSLog(@"%@",[self.userDefaults stringForKey:@"token"]);
@@ -45,8 +46,9 @@
     
     [self customDesign];
     [self sidebarMenu];
-
 }
+
+
 
 //Display progress hub (custom activity indicator)
 -(void)mbProgressHubWithSelector:(SEL)mySelector {
@@ -75,6 +77,11 @@
 
 //SIDEBAR MENU
 -(void)sidebarMenu {
+    UIViewController *newTopViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HomeStudent"];
+    newTopViewController.view.layer.shadowOpacity = 0.75f;
+    newTopViewController.view.layer.shadowRadius = 10.0f;
+    newTopViewController.view.layer.shadowColor = [UIColor blackColor].CGColor;
+
     if (![self.slidingViewController.underLeftViewController isKindOfClass:[MenuStudentViewController class]]) {
         self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"MenuStudentView"];
     }

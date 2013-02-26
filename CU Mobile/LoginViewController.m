@@ -25,7 +25,6 @@
     
     [self customDesign];
     [self animSettings];
-    
 }
 
 //authorise the user
