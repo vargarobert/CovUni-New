@@ -11,5 +11,7 @@
 @interface FileCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *filename;
 @property (weak, nonatomic) IBOutlet UIImageView *icon;
+@property (nonatomic, strong) IBOutlet UIImageView* disclosureImageView;
+@property (nonatomic, strong) IBOutlet UIImageView* bgImageView;
 
 @end

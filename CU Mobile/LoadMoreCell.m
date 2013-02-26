@@ -9,7 +9,7 @@
 #import "LoadMoreCell.h"
 
 @implementation LoadMoreCell
-@synthesize title, loadMoreActivityIndicator;
+@synthesize title, loadMoreActivityIndicator, bgImageView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -22,14 +22,13 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-    
-
-    
 
     //Title
     title.frame = CGRectMake(92.0, 16.0, 136.0, 28.0);
-    title.font = [UIFont fontWithName:@"Arial" size:18.0];
-    title.textColor = [UIColor lightGrayColor];
+    [title setTextColor:[UIColor colorWithRed:113.0/255 green:133.0/255 blue:148.0/255 alpha:1.0]];
+    [title setShadowColor:[UIColor whiteColor]];
+    [title setShadowOffset:CGSizeMake(0, 1)];
+
 }
 
 @end
