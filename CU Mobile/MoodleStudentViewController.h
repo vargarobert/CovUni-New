@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ECSlidingViewController.h"
 #import "MenuStudentViewController.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface MoodleStudentViewController : UITableViewController
 
