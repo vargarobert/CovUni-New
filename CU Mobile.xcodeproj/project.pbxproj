@@ -72,6 +72,7 @@
 		756376EA16B1A23B0052652E /* HomeStudentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 756376E916B1A23B0052652E /* HomeStudentViewController.m */; };
 		7564935716A1D0EC0048C597 /* menu_bar@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7564935516A1D0EC0048C597 /* menu_bar@2x.jpg */; };
 		7564935816A1D0EC0048C597 /* menu_bar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7564935616A1D0EC0048C597 /* menu_bar.jpg */; };
+		7565965E16DE55FD00872C9A /* LocationsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7565965D16DE55FD00872C9A /* LocationsMapViewController.m */; };
 		758836B3168F223600A82A7E /* top_bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 758836B1168F223600A82A7E /* top_bar.png */; };
 		758836B4168F223600A82A7E /* top_bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 758836B2168F223600A82A7E /* top_bar@2x.png */; };
 		758E8E4D1691F533000A3BB5 /* ipad-arrow-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 758E8E491691F533000A3BB5 /* ipad-arrow-selected.png */; };
@@ -218,6 +219,8 @@
 		756376E916B1A23B0052652E /* HomeStudentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeStudentViewController.m; path = ../HomeStudentViewController.m; sourceTree = "<group>"; };
 		7564935516A1D0EC0048C597 /* menu_bar@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "menu_bar@2x.jpg"; sourceTree = "<group>"; };
 		7564935616A1D0EC0048C597 /* menu_bar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menu_bar.jpg; sourceTree = "<group>"; };
+		7565965C16DE55FD00872C9A /* LocationsMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationsMapViewController.h; sourceTree = "<group>"; };
+		7565965D16DE55FD00872C9A /* LocationsMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationsMapViewController.m; sourceTree = "<group>"; };
 		758836B1168F223600A82A7E /* top_bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = top_bar.png; sourceTree = "<group>"; };
 		758836B2168F223600A82A7E /* top_bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "top_bar@2x.png"; sourceTree = "<group>"; };
 		758E8E491691F533000A3BB5 /* ipad-arrow-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ipad-arrow-selected.png"; sourceTree = "<group>"; };
@@ -458,6 +461,8 @@
 				2D9005D616D528790073536B /* SolarStudentViewController.m */,
 				2DDDDC6716B08EC400CDB4E3 /* LocationsViewController.h */,
 				2DDDDC6816B08EC400CDB4E3 /* LocationsViewController.m */,
+				7565965C16DE55FD00872C9A /* LocationsMapViewController.h */,
+				7565965D16DE55FD00872C9A /* LocationsMapViewController.m */,
 				2DDDDC6916B08EC400CDB4E3 /* TwitterStudentViewController.h */,
 				2DDDDC6A16B08EC400CDB4E3 /* TwitterStudentViewController.m */,
 				2DDDDC6B16B08EC400CDB4E3 /* YouTubeStudentViewController.h */,
@@ -659,6 +664,7 @@
 				2D9DF85F16DBDBF700A5ED8E /* FileCell.m in Sources */,
 				2D9DF86216DC0C2600A5ED8E /* NewsCell.m in Sources */,
 				750B7C7916DD13730078FE4B /* LibraryCell.m in Sources */,
+				7565965E16DE55FD00872C9A /* LocationsMapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

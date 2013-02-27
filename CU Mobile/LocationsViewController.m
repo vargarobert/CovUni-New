@@ -8,6 +8,7 @@
 
 #import "LocationsViewController.h"
 #import "MasterCell.h"
+#import "LocationsMapViewController.h"
 
 @interface LocationsViewController ()
 
@@ -89,6 +90,15 @@
     cell.imageView.image = [UIImage imageNamed:@"ipad-list-item-selected.png"];
 
     return cell;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"locationsMapSegue"]) {
+        //NSIndexPath *cellPath = [self.tableView indexPathForCell:sender];
+        NSString *locationTitle = @"The Hub";    //[[self.moodle objectAtIndex:cellPath.row] objectForKey:@"moduleid"];
+        LocationsMapViewController *mmdvc = [segue destinationViewController];
+        mmdvc.locationTitle = locationTitle;
+    }
 }
 
 /*
