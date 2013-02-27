@@ -15,3 +15,4 @@ profile
 *.moved-aside
 DerivedData
 CU Mobile.xcodeproj/project.xcworkspace/xcuserdata/robertvarga.xcuserdatad/UserInterfaceState.xcuserstate
+.DS_Store
