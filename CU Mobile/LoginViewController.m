@@ -191,10 +191,4 @@
     [self loginAuth];
 }
 
-- (IBAction)guestButton:(id)sender {
-    NSString *token = @"guest";
-    [self.userDefaults setObject:token forKey:@"token"];
-    [self.userDefaults synchronize];
-    [self dismissViewControllerAnimated:NO completion:nil];
-}
 @end

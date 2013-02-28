@@ -20,6 +20,5 @@
 @property (weak, nonatomic) IBOutlet UIButton *guestButtonOutlet;
 
 - (IBAction)loginButton:(id)sender;
-- (IBAction)guestButton:(id)sender;
 
 @end
