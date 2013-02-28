@@ -52,10 +52,11 @@
         if ([[json valueForKey:@"status"] isEqualToString:@"INVALID_LOGIN"]) {
             NSLog(@"error");
             [self alertStatus:@"Please revise your login credentials" :@"Login Failed!"];
+            //empty password fields
             self.usernameField.text = @"";
             self.passwordField.text = @"";
         } else {
-            [self.userDefaults setObject:[json valueForKey:@"token"] forKey:@"username"];
+            [self.userDefaults setObject:[json valueForKey:@"token"] forKey:@"token"];
             [self.userDefaults synchronize];
             //dismiss LOGIN view
             [self dismissViewControllerAnimated:NO completion:nil];

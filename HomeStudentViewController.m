@@ -39,7 +39,7 @@
     if (![self.userDefaults stringForKey:@"token"]) {
         UIViewController *login = [self.storyboard instantiateViewControllerWithIdentifier:@"loginPopUp"];
         [self presentViewController:login animated:NO completion:nil];
-    } 
+    }
     
     //Display progress hub white selector performed on different thread
     [self mbProgressHubWithSelector:@selector(newsFeed)];

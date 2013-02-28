@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
+#import "NSMutableArray+PlistOperations.h"
 
-@interface LocationsMapViewController : UIViewController
 
+@interface LocationsMapViewController : UIViewController <MKMapViewDelegate>
+
+@property (nonatomic, strong) IBOutlet MKMapView *mapView;
 @property (nonatomic, strong) NSString *locationTitle;
-
+@property NSInteger locationid;
 
 @end
