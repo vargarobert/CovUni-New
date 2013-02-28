@@ -8,9 +8,10 @@
 
 #import "LocationsViewController.h"
 #import "MasterCell.h"
+#import "LocationsMapViewController.h"
 
 @interface LocationsViewController ()
-
+@property (nonatomic, strong) NSMutableArray *list;
 @end
 
 @implementation LocationsViewController
@@ -28,6 +29,7 @@
 {
     [super viewDidLoad];
 
+    self.list = [NSMutableArray loadDataFromPlist:@"ListData.plist" forKey:@"locations"];
     [self customDesign];
 }
 
@@ -74,7 +76,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 3;
+    return self.list.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -82,13 +84,30 @@
     static NSString *CellIdentifier = @"PlacesCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
+    NSDictionary *dict = [self.list objectAtIndex:indexPath.row];
+    
     // Configure the cell...
-    cell.textLabel.text = @"The Hub";
+    cell.textLabel.text = [dict objectForKey:@"name"];
     cell.detailTextLabel.text = @"Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
 
     cell.imageView.image = [UIImage imageNamed:@"ipad-list-item-selected.png"];
 
     return cell;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"locationsMapSegue"]) {
+        
+        NSIndexPath *cellPath = [self.tableView indexPathForCell:sender];
+        NSString *locationTitle = [[self.list objectAtIndex:cellPath.row] objectForKey:@"name"];
+        LocationsMapViewController *mmdvc = [segue destinationViewController];
+        
+        //location name
+        mmdvc.locationTitle = locationTitle;
+        //location id
+        mmdvc.locationid = (unsigned long)[cellPath indexAtPosition:1];
+
+    }
 }
 
 /*

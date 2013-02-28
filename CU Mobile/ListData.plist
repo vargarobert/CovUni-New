@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>locations</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>Alan Berry</string>
+			<key>lat</key>
+			<real>52.408074</real>
+			<key>long</key>
+			<real>-1.506071</real>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Armstrong Siddeley</string>
+			<key>lat</key>
+			<real>52.407537</real>
+			<key>long</key>
+			<real>-1.500664</real>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Charles Ward</string>
+			<key>lat</key>
+			<real>52.408192</real>
+			<key>long</key>
+			<real>-1.504698</real>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Ellen Terry</string>
+			<key>lat</key>
+			<real>52.406412</real>
+			<key>long</key>
+			<real>-1.504548</real>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>George Eliot</string>
+			<key>lat</key>
+			<real>52.40759</real>
+			<key>long</key>
+			<real>-1.504891</real>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Graham Sutherland</string>
+			<key>lat</key>
+			<real>52.406817</real>
+			<key>long</key>
+			<real>-1.503196</real>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Jaguar</string>
+			<key>lat</key>
+			<real>52.407053</real>
+			<key>long</key>
+			<real>-1.501114</real>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>James Stanley</string>
+			<key>lat</key>
+			<real>52.40721</real>
+			<key>long</key>
+			<real>-1.50429</real>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Lanchester Library</string>
+			<key>lat</key>
+			<real>52.405665</real>
+			<key>long</key>
+			<real>-1.500921</real>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Maurice Foss</string>
+			<key>lat</key>
+			<real>52.407406</real>
+			<key>long</key>
+			<real>-1.503389</real>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Richard Crossman</string>
+			<key>lat</key>
+			<real>52.406529</real>
+			<key>long</key>
+			<real>-1.505535</real>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Sports Centre</string>
+			<key>lat</key>
+			<real>52.405613</real>
+			<key>long</key>
+			<real>-1.504033</real>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Student Centre</string>
+			<key>lat</key>
+			<real>52.404697</real>
+			<key>long</key>
+			<real>-1.500685</real>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Technology Park</string>
+			<key>lat</key>
+			<real>52.402367</real>
+			<key>long</key>
+			<real>-1.503732</real>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Hub</string>
+			<key>lat</key>
+			<real>52.407171</real>
+			<key>long</key>
+			<real>-1.504977</real>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The new EC</string>
+			<key>lat</key>
+			<real>52.405273</real>
+			<key>long</key>
+			<real>-1.499913</real>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>William Morris</string>
+			<key>lat</key>
+			<real>52.406477</real>
+			<key>long</key>
+			<real>-1.500406</real>
+		</dict>
+	</array>
+</dict>
+</plist>
