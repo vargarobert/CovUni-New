@@ -14,7 +14,7 @@
 @interface MoodleStudentViewController ()
 
 @property (nonatomic, strong) NSMutableArray *moodle;
-
+@property NSUserDefaults *userDefaults;
 @end
 
 @implementation MoodleStudentViewController
@@ -32,6 +32,9 @@
 {
     [super viewDidLoad];
 
+    //init with user defaults
+    self.userDefaults = [NSUserDefaults standardUserDefaults];
+    
     //Display progress hub white selector performed on different thread
     [self mbProgressHubWithSelector:@selector(moodleFeed)];
     
@@ -46,14 +49,16 @@
     [hud showWhileExecuting:mySelector onTarget:self withObject:nil animated:YES];
 }
 
-
+//get DATA about modules the student is undertaking
 -(void)moodleFeed {
-    NSURL *url=[NSURL URLWithString:@"http://creative.coventry.ac.uk/~sinclaig/api/index.php/moodle/modules"];
+    
+    NSURL *url=[NSURL URLWithString:kDataURL];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:url];
     [request setHTTPMethod:@"GET"];
-    [request setValue:@"qwerty" forHTTPHeaderField:@"Token"];
+    //get only the modules that are bellonging to the user (by token)
+    [request setValue:[self.userDefaults stringForKey:@"token"] forHTTPHeaderField:@"Token"];
     
     NSError *error;
     NSHTTPURLResponse *response = nil;

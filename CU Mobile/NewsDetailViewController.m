@@ -60,14 +60,12 @@
 
 
 -(void)newsFeed {
-    NSString *urlString = [[NSString alloc] initWithFormat:@"http://creative.coventry.ac.uk/~sinclaig/api/index.php/news/article/id/%@",self.newsCode];
+    NSString *urlString = [[NSString alloc] initWithFormat:@"http://robert-varga.com/cov_uni_app/index.php/news/article/id/%@",self.newsCode];
     NSURL *url=[NSURL URLWithString:urlString];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:url];
     [request setHTTPMethod:@"GET"];
-    [request setValue:@"qwerty" forHTTPHeaderField:@"Token"];
-    
     NSError *error;
     NSHTTPURLResponse *response = nil;
     NSData *urlData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -92,7 +90,7 @@
         NSDate *date = [NSDate dateWithTimeIntervalSince1970:_interval];
         NSDateFormatter *_formatter=[[NSDateFormatter alloc]init];
         [_formatter setLocale:[NSLocale currentLocale]];
-        [_formatter setDateFormat:@"dd.MM.yyyy"];
+        [_formatter setDateFormat:@"dd.MM.yyyy HH:mm"];
         NSString *_date=[_formatter stringFromDate:date];
         [self.NewsDate setText:_date];
         

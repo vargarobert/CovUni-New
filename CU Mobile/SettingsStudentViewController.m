@@ -72,13 +72,13 @@
 
 //request the news from web services
 -(void)fetchUserData {
-    NSURL *url = [NSURL URLWithString:@"http://creative.coventry.ac.uk/~sinclaig/api/index.php/account/details"];
+    NSURL *url = [NSURL URLWithString:kDataURL];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:url];
     [request setHTTPMethod:@"GET"];
     //secure request, via token
-    [request setValue:@"qwerty" forHTTPHeaderField:@"Token"];
+    [request setValue:[self.userDefaults stringForKey:@"token"] forHTTPHeaderField:@"Token"];
     
     NSError *error;
     NSHTTPURLResponse *response = nil;
@@ -145,7 +145,7 @@
         cell.textLabel.text = [self.userData objectForKey:@"studentid"];
         cell.detailTextLabel.text = @"Student ID";
     } else if(indexRow == 0 && indexSection == 1) {
-        cell.textLabel.text = [self.userData objectForKey:@"course"];
+        cell.textLabel.text = @"Computing"; //data feed empty for course at the moment, [self.userData objectForKey:@"course"];
         cell.detailTextLabel.text = @"Course";
     } else if(indexRow == 1 && indexSection == 1) {
         cell.textLabel.text = [self.userData objectForKey:@"printcredits"];
@@ -217,7 +217,8 @@
             [self.slidingViewController resetTopView];
         }];
 
-        //removes token
+        //DELETE token
+        [self deleteAuth];
         [self.userDefaults setObject:NULL forKey:@"token"];
         [self.userDefaults synchronize];
         
@@ -225,6 +226,27 @@
         //[self presentViewController:login animated:YES completion:nil];
     }
     
+}
+
+//authorise the user
+-(void)deleteAuth {
+    
+    //DELETE SESSION (LOG OUT)
+//    NSString *key = [NSString stringWithFormat:@"Token=%@", [self.userDefaults stringForKey:@"token"]];
+
+    NSURL *url=[NSURL URLWithString:kLogOutURL];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"DELETE"];
+    // Log out based on user's TOKEN (dummy data in web service)
+    [request setValue:[self.userDefaults stringForKey:@"token"] forHTTPHeaderField:@"Token"];
+//    [request setHTTPBody:[key dataUsingEncoding:NSUTF8StringEncoding]];
+
+    NSURLResponse *response;
+    NSError *error;
+    NSData *loginData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    NSArray *json = [NSJSONSerialization JSONObjectWithData:loginData options:kNilOptions error:&error];
+    NSLog(@"response data: %@", json);
+
 }
 
 @end

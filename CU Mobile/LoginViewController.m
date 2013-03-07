@@ -40,7 +40,7 @@
     } else {
         NSString *keys = [NSString stringWithFormat:@"username=%@&password=%@",self.usernameField.text,self.passwordField.text];
         
-        NSURL *url=[NSURL URLWithString:kPostURL];
+        NSURL *url=[NSURL URLWithString:kLoginURL];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
         [request setHTTPMethod:@"POST"];
         [request setHTTPBody:[keys dataUsingEncoding:NSUTF8StringEncoding]];

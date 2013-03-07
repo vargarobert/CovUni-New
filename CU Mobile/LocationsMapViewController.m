@@ -16,14 +16,7 @@
 @implementation LocationsMapViewController
 @synthesize locationTitle, locationid, mapView;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+
 
 - (void)viewDidLoad
 {
@@ -32,12 +25,14 @@
     
     self.mapView.delegate = self;
     self.navigationItem.title = self.locationTitle;
-
+    
+    //read from Plist file
     self.list = [NSMutableArray loadDataFromPlist:@"ListData.plist" forKey:@"locations"];    
 }
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
+    //set MAP coordinates
     CLLocationCoordinate2D coordinate;
     coordinate.latitude = 52.406673;
     coordinate.longitude = -1.502380;
@@ -45,7 +40,7 @@
     [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
     
     
-
+        //setup Annitation 
     NSMutableArray *annotattions = [[NSMutableArray alloc] init];
     
     //get annotation coordinates

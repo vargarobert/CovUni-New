@@ -12,7 +12,7 @@
 #import "MoodleFileViewController.h"
 
 @interface MoodleModuleDetailsViewController ()
-
+@property NSUserDefaults *userDefaults;
 @end
 
 @implementation MoodleModuleDetailsViewController
@@ -31,6 +31,9 @@
 {
     [super viewDidLoad];
     
+    //init with user defaults
+    self.userDefaults = [NSUserDefaults standardUserDefaults];
+    
     //Display progress hub white selector performed on different thread
     [self mbProgressHubWithSelector:@selector(moduleFeed)];
     
@@ -48,13 +51,14 @@
 
 
 -(void)moduleFeed {
-    NSString *urlString = [[NSString alloc] initWithFormat:@"http://creative.coventry.ac.uk/~sinclaig/api/index.php/moodle/files/id/%@",self.moduleId];
+    NSString *urlString = [[NSString alloc] initWithFormat:@"http://robert-varga.com/cov_uni_app/index.php/moodle/files/id/%@",self.moduleId];
     NSURL *url=[NSURL URLWithString:urlString];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:url];
     [request setHTTPMethod:@"GET"];
-    [request setValue:@"qwerty" forHTTPHeaderField:@"Token"];
+    //get only the modules that are bellonging to the user (by token)
+    [request setValue:[self.userDefaults stringForKey:@"token"] forHTTPHeaderField:@"Token"];
     
     NSError *error;
     NSHTTPURLResponse *response = nil;

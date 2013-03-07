@@ -12,7 +12,7 @@
 
 @interface SolarStudentViewController ()
 @property (nonatomic, strong) NSMutableArray *solar;
-
+@property NSUserDefaults *userDefaults;
 @end
 
 @implementation SolarStudentViewController
@@ -30,6 +30,9 @@
 {
     [super viewDidLoad];
     
+    //init with user defaults
+    self.userDefaults = [NSUserDefaults standardUserDefaults];
+    
     //Display progress hub white selector performed on different thread
     [self mbProgressHubWithSelector:@selector(solarFeed)];
     
@@ -46,21 +49,20 @@
 
 
 -(void)solarFeed {
-    NSURL *url=[NSURL URLWithString:@"http://creative.coventry.ac.uk/~sinclaig/api/index.php/solar/grades"];
+    NSURL *url=[NSURL URLWithString:kDataURL];
     
-    
-    
+    //request grades data
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:url];
     [request setHTTPMethod:@"GET"];
-    [request setValue:@"qwerty" forHTTPHeaderField:@"Token"];
+    [request setValue:[self.userDefaults stringForKey:@"token"] forHTTPHeaderField:@"Token"];
     
     NSError *error;
     NSHTTPURLResponse *response = nil;
     NSData *urlData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     
     if (urlData) {
-        NSLog(@"solar: %@", [NSJSONSerialization JSONObjectWithData:urlData options:kNilOptions error:&error]);
+//        NSLog(@"solar: %@", [NSJSONSerialization JSONObjectWithData:urlData options:kNilOptions error:&error]);
         self.solar = [NSJSONSerialization JSONObjectWithData:urlData options:kNilOptions error:&error];
     }
     //Switch network indicator off

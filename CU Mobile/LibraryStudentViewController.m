@@ -13,7 +13,7 @@
 
 @interface LibraryStudentViewController ()
 @property (nonatomic, strong) NSMutableArray *library;
-
+@property NSUserDefaults *userDefaults;
 @end
 
 @implementation LibraryStudentViewController
@@ -31,6 +31,9 @@
 {
     [super viewDidLoad];
     
+    //init with user defaults
+    self.userDefaults = [NSUserDefaults standardUserDefaults];
+    
     //Display progress hub white selector performed on different thread
     [self mbProgressHubWithSelector:@selector(libraryFeed)];
     
@@ -47,12 +50,13 @@
 
 
 -(void)libraryFeed {
-    NSURL *url=[NSURL URLWithString:@"http://creative.coventry.ac.uk/~sinclaig/api/index.php/library/loaned"];
+    NSURL *url=[NSURL URLWithString:kDataURL];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:url];
     [request setHTTPMethod:@"GET"];
-    [request setValue:@"qwerty" forHTTPHeaderField:@"Token"];
+    //get data based on token
+    [request setValue:[self.userDefaults stringForKey:@"token"] forHTTPHeaderField:@"Token"];
     
     NSError *error;
     NSHTTPURLResponse *response = nil;

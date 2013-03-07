@@ -11,6 +11,9 @@
 #import "MenuStudentViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
+//urls for CRUD operations on server
+#define kDataURL @"http://robert-varga.com/cov_uni_app/index.php/moodle/modules"
+
 @interface MoodleStudentViewController : UITableViewController
 
 @end

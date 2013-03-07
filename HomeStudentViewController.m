@@ -91,7 +91,7 @@
 
 //request the news from web services
 -(void)newsFeed {
-    NSString *url = [NSString stringWithFormat:@"http://creative.coventry.ac.uk/~sinclaig/api/index.php/news/list/start/0/amount/5"];
+    NSString *url = [NSString stringWithFormat:kDataURL];
     NSURL *jsonUrl = [NSURL URLWithString:url];
     NSData *data = [NSData dataWithContentsOfURL:jsonUrl];
     NSError *error;
