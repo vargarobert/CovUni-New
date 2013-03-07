@@ -117,7 +117,7 @@
     static NSString *CellIdentifier = @"moodleCell";
     MoodleCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    
+    //fill the cell with INFO
     cell.moduleName.text = [[self.moodle objectAtIndex:indexPath.row] objectForKey:@"name"];
     cell.moduleName.numberOfLines = 2;
     cell.moduleCode.text = [[self.moodle objectAtIndex:indexPath.row] objectForKey:@"moduleid"];
@@ -127,7 +127,6 @@
     [cell.thumbnail setImageWithURL:[[self.moodle objectAtIndex:indexPath.row] objectForKey:@"thumbnail"]];
     
 
-    
     return cell;
 }
 
@@ -136,6 +135,7 @@
         NSIndexPath *cellPath = [self.tableView indexPathForCell:sender];
         NSString *moduleCode = [[self.moodle objectAtIndex:cellPath.row] objectForKey:@"moduleid"];
         MoodleModuleDetailsViewController *mmdvc = [segue destinationViewController];
+        //send the module code to the next view
         mmdvc.moduleId = moduleCode;
         
     }

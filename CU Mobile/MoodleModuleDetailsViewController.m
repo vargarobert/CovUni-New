@@ -9,6 +9,7 @@
 #import "MoodleModuleDetailsViewController.h"
 #import "MBProgressHUD.h"
 #import "FileCell.h"
+#import "MoodleFileViewController.h"
 
 @interface MoodleModuleDetailsViewController ()
 
@@ -90,11 +91,12 @@
     static NSString *CellIdentifier = @"fileCell";
     FileCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    
+    //Configure Cell
     cell.filename.text = [[self.moduleFiles objectAtIndex:indexPath.row] objectForKey:@"name"];
     
     NSString *type = [[NSString alloc] initWithFormat:@"%@",[[self.moduleFiles objectAtIndex:indexPath.row] objectForKey:@"type"]];
-                      
+    
+    //Types of files (set icons)
     if ([type isEqualToString:@".html"] ) {
         cell.icon.image = [UIImage imageNamed:@"Internet.png"];
     }
@@ -120,11 +122,23 @@
         cell.icon.image = [UIImage imageNamed:@"Unknown.png"];
     };
     
-    NSLog(@"url: %@",[NSString stringWithFormat:@"%@",[[self.moduleFiles objectAtIndex:indexPath.row] objectForKey:@"url"]]);
+//    NSLog(@"url: %@",[NSString stringWithFormat:@"%@",[[self.moduleFiles objectAtIndex:indexPath.row] objectForKey:@"url"]]);
 
     return cell;
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"moduleFileSegue"]) {
+        NSIndexPath *cellPath = [self.tableView indexPathForCell:sender];
+        NSString *fileURL = [[self.moduleFiles objectAtIndex:cellPath.row] objectForKey:@"url"];
+        MoodleFileViewController *mmdvc = [segue destinationViewController];
+        //send the file URL to the web view
+        mmdvc.fileURLString = fileURL;
+        
+        NSString *fileTitle = [[self.moduleFiles objectAtIndex:cellPath.row] objectForKey:@"name"];
+        mmdvc.fileTitle = fileTitle;
+    }
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

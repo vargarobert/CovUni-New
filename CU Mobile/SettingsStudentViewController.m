@@ -7,9 +7,11 @@
 //
 
 #import "SettingsStudentViewController.h"
+#import "MBProgressHUD.h"
 
 @interface SettingsStudentViewController ()
 @property NSUserDefaults *userDefaults;
+@property (strong, nonatomic) NSMutableDictionary *userData;
 @end
 
 @implementation SettingsStudentViewController
@@ -27,12 +29,20 @@
 {
     [super viewDidLoad];
     
+    //init with user defaults
     self.userDefaults = [NSUserDefaults standardUserDefaults];
-
+    
+    //get user data
+    [self mbProgressHubWithSelector:@selector(fetchUserData)];
+    
+    //customize the view
     [self customDesign];
 }
 
 -(void)customDesign {
+    //background pattern
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"BG-pattern.png"]];
+    
     // nav bar
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"top_bar.png"] forBarMetrics:UIBarMetricsDefault];
     
@@ -49,6 +59,40 @@
     //add buton to navbar
     UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithCustomView:uiSettingsButton];
     self.navigationItem.leftBarButtonItem = settingsButton;
+}
+
+//Display progress hub (custom activity indicator)
+-(void)mbProgressHubWithSelector:(SEL)mySelector {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"Loading";
+    [hud showWhileExecuting:mySelector onTarget:self withObject:nil animated:YES];
+}
+
+
+//request the news from web services
+-(void)fetchUserData {
+    NSURL *url = [NSURL URLWithString:@"http://creative.coventry.ac.uk/~sinclaig/api/index.php/account/details"];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:url];
+    [request setHTTPMethod:@"GET"];
+    //secure request, via token
+    [request setValue:@"qwerty" forHTTPHeaderField:@"Token"];
+    
+    NSError *error;
+    NSHTTPURLResponse *response = nil;
+    NSData *urlData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    
+    if (urlData) {
+//        NSLog(@"urldata: %@",[[NSString alloc]initWithData:urlData encoding:NSUTF8StringEncoding]);
+        self.userData = [NSJSONSerialization JSONObjectWithData:urlData options:kNilOptions error:&error];
+    }
+    //Switch network indicator off
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
+    //Reload UITableView data
+    [self.tableView reloadData];
 }
 
 -(void)menuButton {
@@ -73,7 +117,7 @@
 {
     // Return the number of rows in the section.
     if (section == 0)
-        return 2;
+        return 3;
     else if (section == 1)
         return 2;
     else
@@ -85,16 +129,30 @@
     static NSString *CellIdentifier = @"settingsCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    
+    //gets the path
     int indexRow = [indexPath row];
     int indexSection = [indexPath section];
-
+    
+    //set data for each cell in table view
     if (indexRow == 0 && indexSection == 0) {
-        cell.textLabel.text = @"Personal Details";
+        NSString *fullName = [NSString stringWithFormat:@"%@ %@",[self.userData objectForKey:@"forename"], [self.userData objectForKey:@"surname"]];
+        cell.textLabel.text = fullName;
+        cell.detailTextLabel.text = @"Name";
     } else if(indexRow == 1 && indexSection == 0) {
-        cell.textLabel.text = @"Notifications";
+        cell.textLabel.text = [self.userData objectForKey:@"username"];
+        cell.detailTextLabel.text = @"Username";
+    } else if(indexRow == 2 && indexSection == 0) {
+        cell.textLabel.text = [self.userData objectForKey:@"studentid"];
+        cell.detailTextLabel.text = @"Student ID";
+    } else if(indexRow == 0 && indexSection == 1) {
+        cell.textLabel.text = [self.userData objectForKey:@"course"];
+        cell.detailTextLabel.text = @"Course";
+    } else if(indexRow == 1 && indexSection == 1) {
+        cell.textLabel.text = [self.userData objectForKey:@"printcredits"];
+        cell.detailTextLabel.text = @"Print credits";
     } else if(indexRow == 0 && indexSection == 2) {
         cell.textLabel.text = @"Sign Out";
+        cell.detailTextLabel.text = @"";
     }
 
     

@@ -10,7 +10,12 @@
 
 @interface NSMutableArray (PlistOperations)
 
+    //CRUD operations on plist
+
+//Load data from Plist file
 + (NSMutableArray *)loadDataFromPlist:(NSString *)plist forKey:(NSString *)key;
-//- (void)saveToPlist:(NSString *)plist forKey:(NSString *)key;
+
+//create, update on Plist file
+- (void)saveToPlist:(NSString *)plist forKey:(NSString *)key;
 
 @end

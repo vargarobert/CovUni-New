@@ -44,32 +44,7 @@
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 800, 800);
     [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
     
-    // Add an annotation
-//    MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
-//    point.coordinate = userLocation.coordinate;
-//    point.title = @"Where am I?";
-//    point.subtitle = @"I'm here!!!";
-//    
-//    //[self.mapView addAnnotation:point];
-
-    //locations
-//    Annotation *AB = [[Annotation alloc]initWithName:@"Alan Berry" coords:CLLocationCoordinate2DMake(52.408074, -1.506071)];
-//    Annotation *AS = [[Annotation alloc]initWithName:@"Armstrong Siddeley" coords:CLLocationCoordinate2DMake(52.407537, -1.500664)];
-//    Annotation *CW = [[Annotation alloc]initWithName:@"Charles Ward" coords:CLLocationCoordinate2DMake(52.408192, -1.504698)];
-//    Annotation *ET = [[Annotation alloc]initWithName:@"Ellen Terry" coords:CLLocationCoordinate2DMake(52.406412, -1.504548)];
-//    Annotation *GE = [[Annotation alloc]initWithName:@"George Eliot" coords:CLLocationCoordinate2DMake(52.407590, -1.504891)];
-//    Annotation *GS = [[Annotation alloc]initWithName:@"Graham Sutherland" coords:CLLocationCoordinate2DMake(52.406817, -1.503196)];
-//    Annotation *J = [[Annotation alloc]initWithName:@"Jaguar" coords:CLLocationCoordinate2DMake(52.407053, -1.501114)];
-//    Annotation *JS = [[Annotation alloc]initWithName:@"James Stanley" coords:CLLocationCoordinate2DMake(52.407210, -1.504290)];
-//    Annotation *LL = [[Annotation alloc]initWithName:@"Lanchester Library" coords:CLLocationCoordinate2DMake(52.405665, -1.500921)];
-//    Annotation *MF = [[Annotation alloc]initWithName:@"Maurice Foss" coords:CLLocationCoordinate2DMake(52.407406, -1.503389)];
-//    Annotation *RC = [[Annotation alloc]initWithName:@"Richard Crossman" coords:CLLocationCoordinate2DMake(52.406529, -1.505535)];
-//    Annotation *SpC = [[Annotation alloc]initWithName:@"Sports Centre" coords:CLLocationCoordinate2DMake(52.405613, -1.504033)];
-//    Annotation *SC = [[Annotation alloc]initWithName:@"Student Centre" coords:CLLocationCoordinate2DMake(52.404697, -1.500685)];
-//    Annotation *TP = [[Annotation alloc]initWithName:@"Technology Park" coords:CLLocationCoordinate2DMake(52.402367, -1.503732)];
-//    Annotation *TH = [[Annotation alloc]initWithName:@"The Hub" coords:CLLocationCoordinate2DMake(52.407171, -1.504977)];
-//    Annotation *TnEC = [[Annotation alloc]initWithName:@"The new EC" coords:CLLocationCoordinate2DMake(52.405273, -1.499913)];
-//    Annotation *WM = [[Annotation alloc]initWithName:@"William Morris" coords:CLLocationCoordinate2DMake(52.406477, -1.500406)];
+    
 
     NSMutableArray *annotattions = [[NSMutableArray alloc] init];
     

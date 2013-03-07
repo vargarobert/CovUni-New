@@ -92,6 +92,7 @@
     self.navigationItem.leftBarButtonItem = settingsButton;
 }
 
+//menu button to triger bottom view
 -(void)menuButton {
     [self.slidingViewController anchorTopViewTo:ECRight];
 }

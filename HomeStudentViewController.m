@@ -9,6 +9,8 @@
 #import "HomeStudentViewController.h"
 #import "MBProgressHUD.h"
 #import "NewsCell.h"
+#import "NewsDetailViewController.h"
+
 
 @interface HomeStudentViewController ()
 @property NSUserDefaults *userDefaults;
@@ -35,20 +37,48 @@
     self.userDefaults = [NSUserDefaults standardUserDefaults];
     NSLog(@"%@",[self.userDefaults stringForKey:@"token"]);
     
+    
+    
     //Veryfy if LOGGED IN
     if (![self.userDefaults stringForKey:@"token"]) {
         UIViewController *login = [self.storyboard instantiateViewControllerWithIdentifier:@"loginPopUp"];
         [self presentViewController:login animated:NO completion:nil];
     }
     
-    //Display progress hub white selector performed on different thread
-    [self mbProgressHubWithSelector:@selector(newsFeed)];
+    //if there is internet connection, load news
+//    if ([self pingServer]) {
+//        NSLog(@"mergee");
+        //Display progress hub white selector performed on different thread
+        [self mbProgressHubWithSelector:@selector(newsFeed)];
+//    } else {
+//        //alert the user that there is no internet connection
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error loading content"
+//                                                            message:@"Internet connection not available"
+//                                                           delegate:self
+//                                                  cancelButtonTitle:@"Ok"
+//                                                  otherButtonTitles:nil, nil];
+//        
+//        [alertView show];
+//    }
+
     
+    
+    //custom view design
     [self customDesign];
+    //menu view on the right
     [self sidebarMenu];
 }
 
 
+//check for internet connection (reachability)
+//- (BOOL) pingServer {                   //address that is always available
+//    NSURL *url = [NSURL URLWithString:@"http://google.com/"];
+//    NSURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+//    NSHTTPURLResponse *response = nil;
+//    [NSURLConnection sendSynchronousRequest:request
+//                          returningResponse:&response error:NULL];
+//    return (response != nil);
+//}
 
 //Display progress hub (custom activity indicator)
 -(void)mbProgressHubWithSelector:(SEL)mySelector {
@@ -59,7 +89,7 @@
 }
 
 
-
+//request the news from web services
 -(void)newsFeed {
     NSString *url = [NSString stringWithFormat:@"http://creative.coventry.ac.uk/~sinclaig/api/index.php/news/list/start/0/amount/5"];
     NSURL *jsonUrl = [NSURL URLWithString:url];
@@ -85,7 +115,7 @@
     if (![self.slidingViewController.underLeftViewController isKindOfClass:[MenuStudentViewController class]]) {
         self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"MenuStudentView"];
     }
-    //problem with panGesture
+    //panGesture not working properly
 //    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
 
 }
@@ -141,17 +171,24 @@
     static NSString *CellIdentifier = @"NewsCell";
     NewsCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
+    
     // Configure the cell...
-    
     NSDictionary *item = [self.news objectAtIndex:indexPath.row];
-    
     
     cell.title.text = [item objectForKey:@"title"];
     cell.content.text = [item objectForKey:@"description"];
 
 
-    
     return cell;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"newsDetailSegue"]) {
+        NSIndexPath *cellPath = [self.tableView indexPathForCell:sender];
+        NSString *newsCode = [[self.news objectAtIndex:cellPath.row] objectForKey:@"id"];
+        NewsDetailViewController *mvc = [segue destinationViewController];
+        mvc.newsCode = newsCode;
+    }
 }
 
 /*
