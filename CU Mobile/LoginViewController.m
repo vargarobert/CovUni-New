@@ -40,7 +40,7 @@
     } else {
         NSString *keys = [NSString stringWithFormat:@"username=%@&password=%@",self.usernameField.text,self.passwordField.text];
         
-        NSURL *url=[NSURL URLWithString:kPostURL];
+        NSURL *url=[NSURL URLWithString:kLoginURL];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
         [request setHTTPMethod:@"POST"];
         [request setHTTPBody:[keys dataUsingEncoding:NSUTF8StringEncoding]];
@@ -81,11 +81,6 @@
     //self.usernameField.layer.cornerRadius = 15;
     self.usernameField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 0)];
     self.usernameField.leftViewMode = UITextFieldViewModeAlways;
-    
-    //guest button
-    self.guestButtonOutlet.layer.backgroundColor = [UIColor whiteColor].CGColor;
-    self.guestButtonOutlet.layer.borderColor = [UIColor colorWithRed:1.0/255.0 green:99.0/255.0 blue:159.0/255.0 alpha:1.0].CGColor;
-    self.guestButtonOutlet.layer.borderWidth = 3.5f;
     
     //login button
     self.loginButtonOutlet.layer.backgroundColor = [UIColor whiteColor].CGColor;
@@ -137,7 +132,7 @@
     UIView *usernameView = [[self.view subviews] objectAtIndex:0];
     UIView *passwordView = [[self.view subviews] objectAtIndex:1];
     UIView *loginView = [[self.view subviews] objectAtIndex:2];
-    UIView *guestView = [[self.view subviews] objectAtIndex:3];
+//    UIView *guestView = [[self.view subviews] objectAtIndex:3];
     
     [UIView beginAnimations:@"fadeLogin" context:nil];
     [UIView setAnimationDelay:.3];
@@ -145,7 +140,7 @@
     usernameView.alpha = 1;
     passwordView.alpha = 1;
     loginView.alpha = 1;
-    guestView.alpha = 1;
+//    guestView.alpha = 1;
     [UIView commitAnimations];
 }
 
@@ -165,14 +160,7 @@
     return YES;
 }
 
-- (void)viewDidUnload {
-    [self setPasswordField:nil];
-    [self setUsernameField:nil];
-    [self setLoginButtonOutlet:nil];
-    [self setGuestButtonOutlet:nil];
-    [super viewDidUnload];
-}
-
+//custom alert function
 - (void) alertStatus:(NSString *)msg :(NSString *)title
 {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
@@ -184,6 +172,7 @@
     [alertView show];
 }
 
+//LOGIN button
 - (IBAction)loginButton:(id)sender {
     //dismiss keyboard
     [self.view endEditing:YES];
@@ -191,10 +180,12 @@
     [self loginAuth];
 }
 
-- (IBAction)guestButton:(id)sender {
-    NSString *token = @"guest";
-    [self.userDefaults setObject:token forKey:@"token"];
-    [self.userDefaults synchronize];
-    [self dismissViewControllerAnimated:NO completion:nil];
+
+- (void)viewDidUnload {
+    [self setPasswordField:nil];
+    [self setUsernameField:nil];
+    [self setLoginButtonOutlet:nil];
+    [super viewDidUnload];
 }
+
 @end

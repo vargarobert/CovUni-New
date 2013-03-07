@@ -9,9 +9,10 @@
 #import "MoodleModuleDetailsViewController.h"
 #import "MBProgressHUD.h"
 #import "FileCell.h"
+#import "MoodleFileViewController.h"
 
 @interface MoodleModuleDetailsViewController ()
-
+@property NSUserDefaults *userDefaults;
 @end
 
 @implementation MoodleModuleDetailsViewController
@@ -30,6 +31,9 @@
 {
     [super viewDidLoad];
     
+    //init with user defaults
+    self.userDefaults = [NSUserDefaults standardUserDefaults];
+    
     //Display progress hub white selector performed on different thread
     [self mbProgressHubWithSelector:@selector(moduleFeed)];
     
@@ -47,13 +51,14 @@
 
 
 -(void)moduleFeed {
-    NSString *urlString = [[NSString alloc] initWithFormat:@"http://creative.coventry.ac.uk/~sinclaig/api/index.php/moodle/files/id/%@",self.moduleId];
+    NSString *urlString = [[NSString alloc] initWithFormat:@"http://robert-varga.com/cov_uni_app/index.php/moodle/files/id/%@",self.moduleId];
     NSURL *url=[NSURL URLWithString:urlString];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:url];
     [request setHTTPMethod:@"GET"];
-    [request setValue:@"qwerty" forHTTPHeaderField:@"Token"];
+    //get only the modules that are bellonging to the user (by token)
+    [request setValue:[self.userDefaults stringForKey:@"token"] forHTTPHeaderField:@"Token"];
     
     NSError *error;
     NSHTTPURLResponse *response = nil;
@@ -90,11 +95,12 @@
     static NSString *CellIdentifier = @"fileCell";
     FileCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    
+    //Configure Cell
     cell.filename.text = [[self.moduleFiles objectAtIndex:indexPath.row] objectForKey:@"name"];
     
     NSString *type = [[NSString alloc] initWithFormat:@"%@",[[self.moduleFiles objectAtIndex:indexPath.row] objectForKey:@"type"]];
-                      
+    
+    //Types of files (set icons)
     if ([type isEqualToString:@".html"] ) {
         cell.icon.image = [UIImage imageNamed:@"Internet.png"];
     }
@@ -120,11 +126,23 @@
         cell.icon.image = [UIImage imageNamed:@"Unknown.png"];
     };
     
-    NSLog(@"url: %@",[NSString stringWithFormat:@"%@",[[self.moduleFiles objectAtIndex:indexPath.row] objectForKey:@"url"]]);
+//    NSLog(@"url: %@",[NSString stringWithFormat:@"%@",[[self.moduleFiles objectAtIndex:indexPath.row] objectForKey:@"url"]]);
 
     return cell;
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"moduleFileSegue"]) {
+        NSIndexPath *cellPath = [self.tableView indexPathForCell:sender];
+        NSString *fileURL = [[self.moduleFiles objectAtIndex:cellPath.row] objectForKey:@"url"];
+        MoodleFileViewController *mmdvc = [segue destinationViewController];
+        //send the file URL to the web view
+        mmdvc.fileURLString = fileURL;
+        
+        NSString *fileTitle = [[self.moduleFiles objectAtIndex:cellPath.row] objectForKey:@"name"];
+        mmdvc.fileTitle = fileTitle;
+    }
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

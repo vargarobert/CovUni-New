@@ -20,18 +20,12 @@
 
 - (void)awakeFromNib
 {
+    //set menu titles and icons
     self.menuItems = [NSArray arrayWithObjects:@"Home", @"Moodle", @"Library", @"Solar", @"Locations", @"YouTube", @"Twitter", @"Settings", nil];
     self.menuIcons = [NSArray arrayWithObjects:@"news.png", @"moodle.png", @"library.png", @"solar.png", @"locations.png", @"youtube.png", @"twitternew.png", @"settings.png", nil];
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+
 
 - (void)viewDidLoad
 {
@@ -41,7 +35,7 @@
     //background
     self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"BG-pattern.png"]];
 
-
+    //sliding settings
     [self.slidingViewController setAnchorRightRevealAmount:210.0f];
     self.slidingViewController.underLeftWidthLayout = ECFullWidth;
     
@@ -76,7 +70,6 @@
 {
     static NSString *CellIdentifier = @"MenuCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-
 
 
     // Configure the cell...
@@ -134,6 +127,7 @@
     
     UIViewController *newTopViewController = [self.storyboard instantiateViewControllerWithIdentifier:identifier];
     
+    //based on menu option selected, replace top view
     [self.slidingViewController anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
         CGRect frame = self.slidingViewController.topViewController.view.frame;
         self.slidingViewController.topViewController = newTopViewController;
@@ -146,8 +140,6 @@
     newTopViewController.view.layer.shadowRadius = 10.0f;
     newTopViewController.view.layer.shadowColor = [UIColor blackColor].CGColor;
 
-    
-   
 }
 
 

@@ -15,19 +15,20 @@
   
     UIStoryboard *storyboard;
   
+    //select storyboard
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
     } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil];
     }
   
+    //set top view controller
     self.topViewController = [storyboard instantiateViewControllerWithIdentifier:@"HomeStudent"];
     
     //set shadow to top view
     self.topViewController.view.layer.shadowOpacity = 0.75f;
     self.topViewController.view.layer.shadowRadius = 10.0f;
     self.topViewController.view.layer.shadowColor = [UIColor blackColor].CGColor;
-
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation

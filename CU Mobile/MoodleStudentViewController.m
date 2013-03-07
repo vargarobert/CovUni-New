@@ -14,7 +14,7 @@
 @interface MoodleStudentViewController ()
 
 @property (nonatomic, strong) NSMutableArray *moodle;
-
+@property NSUserDefaults *userDefaults;
 @end
 
 @implementation MoodleStudentViewController
@@ -32,6 +32,9 @@
 {
     [super viewDidLoad];
 
+    //init with user defaults
+    self.userDefaults = [NSUserDefaults standardUserDefaults];
+    
     //Display progress hub white selector performed on different thread
     [self mbProgressHubWithSelector:@selector(moodleFeed)];
     
@@ -46,14 +49,16 @@
     [hud showWhileExecuting:mySelector onTarget:self withObject:nil animated:YES];
 }
 
-
+//get DATA about modules the student is undertaking
 -(void)moodleFeed {
-    NSURL *url=[NSURL URLWithString:@"http://creative.coventry.ac.uk/~sinclaig/api/index.php/moodle/modules"];
+    
+    NSURL *url=[NSURL URLWithString:kDataURL];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:url];
     [request setHTTPMethod:@"GET"];
-    [request setValue:@"qwerty" forHTTPHeaderField:@"Token"];
+    //get only the modules that are bellonging to the user (by token)
+    [request setValue:[self.userDefaults stringForKey:@"token"] forHTTPHeaderField:@"Token"];
     
     NSError *error;
     NSHTTPURLResponse *response = nil;
@@ -117,7 +122,7 @@
     static NSString *CellIdentifier = @"moodleCell";
     MoodleCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    
+    //fill the cell with INFO
     cell.moduleName.text = [[self.moodle objectAtIndex:indexPath.row] objectForKey:@"name"];
     cell.moduleName.numberOfLines = 2;
     cell.moduleCode.text = [[self.moodle objectAtIndex:indexPath.row] objectForKey:@"moduleid"];
@@ -127,7 +132,6 @@
     [cell.thumbnail setImageWithURL:[[self.moodle objectAtIndex:indexPath.row] objectForKey:@"thumbnail"]];
     
 
-    
     return cell;
 }
 
@@ -136,6 +140,7 @@
         NSIndexPath *cellPath = [self.tableView indexPathForCell:sender];
         NSString *moduleCode = [[self.moodle objectAtIndex:cellPath.row] objectForKey:@"moduleid"];
         MoodleModuleDetailsViewController *mmdvc = [segue destinationViewController];
+        //send the module code to the next view
         mmdvc.moduleId = moduleCode;
         
     }

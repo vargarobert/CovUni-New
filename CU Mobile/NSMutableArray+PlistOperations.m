@@ -28,13 +28,13 @@
     return data;
 }
 
-//- (void)saveToPlist:(NSString *)plist forKey:(NSString *)key {
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *docDir = [paths objectAtIndex:0];
-//    NSString *path = [docDir stringByAppendingPathComponent:plist];
-//    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
-//    [data setObject:self forKey:key];
-//    [data writeToFile: path atomically:YES];
-//}
+- (void)saveToPlist:(NSString *)plist forKey:(NSString *)key {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docDir = [paths objectAtIndex:0];
+    NSString *path = [docDir stringByAppendingPathComponent:plist];
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
+    [data setObject:self forKey:key];
+    [data writeToFile: path atomically:YES];
+}
 
 @end

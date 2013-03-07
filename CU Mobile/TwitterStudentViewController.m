@@ -178,6 +178,7 @@
      */
 }
 
+//tweet from covuni application
 - (IBAction)tweetButton:(id)sender {
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
     {

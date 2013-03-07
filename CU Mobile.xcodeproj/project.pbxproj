@@ -67,6 +67,7 @@
 		7502E2E216A07B890004A901 /* ECSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7502E2DF16A07B890004A901 /* ECSlidingViewController.m */; };
 		7502E2E316A07B890004A901 /* UIImage+ImageWithUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7502E2E116A07B890004A901 /* UIImage+ImageWithUIView.m */; };
 		750B7C7916DD13730078FE4B /* LibraryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 750B7C7816DD13730078FE4B /* LibraryCell.m */; };
+		75342BBC16E4F78000399800 /* NewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75342BBB16E4F78000399800 /* NewsDetailViewController.m */; };
 		7558BA0C16931C380034BA9A /* BG-pattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 7558BA0A16931C370034BA9A /* BG-pattern.png */; };
 		7558BA0D16931C380034BA9A /* BG-pattern@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7558BA0B16931C370034BA9A /* BG-pattern@2x.png */; };
 		755B188B16DEC2ED003686DF /* Annotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 755B188A16DEC2ED003686DF /* Annotation.m */; };
@@ -103,6 +104,8 @@
 		75E434AC168E14140073122D /* CoventryUniversityLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 75E434AA168E14140073122D /* CoventryUniversityLogo.png */; };
 		75E434AD168E14140073122D /* CoventryUniversityLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75E434AB168E14140073122D /* CoventryUniversityLogo@2x.png */; };
 		75E434B7168E2AD40073122D /* loginBackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 75E434B6168E2AD40073122D /* loginBackground.jpg */; };
+		75FAD4A716E688F40015C00D /* MoodleFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FAD4A616E688F40015C00D /* MoodleFileViewController.m */; };
+		75FAD4A916E6A0E20015C00D /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75FAD4A816E6A0E10015C00D /* EventKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -220,6 +223,8 @@
 		7502E2E116A07B890004A901 /* UIImage+ImageWithUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageWithUIView.m"; sourceTree = "<group>"; };
 		750B7C7716DD13730078FE4B /* LibraryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryCell.h; sourceTree = "<group>"; };
 		750B7C7816DD13730078FE4B /* LibraryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryCell.m; sourceTree = "<group>"; };
+		75342BBA16E4F78000399800 /* NewsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDetailViewController.h; sourceTree = "<group>"; };
+		75342BBB16E4F78000399800 /* NewsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDetailViewController.m; sourceTree = "<group>"; };
 		7558BA0A16931C370034BA9A /* BG-pattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BG-pattern.png"; sourceTree = "<group>"; };
 		7558BA0B16931C370034BA9A /* BG-pattern@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BG-pattern@2x.png"; sourceTree = "<group>"; };
 		755B188916DEC2ED003686DF /* Annotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Annotation.h; sourceTree = "<group>"; };
@@ -264,6 +269,9 @@
 		75E434AA168E14140073122D /* CoventryUniversityLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CoventryUniversityLogo.png; sourceTree = "<group>"; };
 		75E434AB168E14140073122D /* CoventryUniversityLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoventryUniversityLogo@2x.png"; sourceTree = "<group>"; };
 		75E434B6168E2AD40073122D /* loginBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = loginBackground.jpg; sourceTree = "<group>"; };
+		75FAD4A516E688F40015C00D /* MoodleFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoodleFileViewController.h; sourceTree = "<group>"; };
+		75FAD4A616E688F40015C00D /* MoodleFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoodleFileViewController.m; sourceTree = "<group>"; };
+		75FAD4A816E6A0E10015C00D /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +279,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75FAD4A916E6A0E20015C00D /* EventKit.framework in Frameworks */,
 				2DD5F1A416D3D0FF003487BA /* MapKit.framework in Frameworks */,
 				755B188E16DEC315003686DF /* CoreLocation.framework in Frameworks */,
 				2DD5F1E116D3DB63003487BA /* CoreGraphics.framework in Frameworks */,
@@ -466,6 +475,7 @@
 		75E4347B168E0A770073122D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				75FAD4A816E6A0E10015C00D /* EventKit.framework */,
 				755B188D16DEC315003686DF /* CoreLocation.framework */,
 				2D9005C216D414FF0073536B /* SDWebImage.framework */,
 				2DD5F1E016D3DB63003487BA /* CoreGraphics.framework */,
@@ -495,10 +505,14 @@
 				2DDDDC6216B08EC400CDB4E3 /* MainStoryboard_iPad.storyboard */,
 				756376E816B1A23B0052652E /* HomeStudentViewController.h */,
 				756376E916B1A23B0052652E /* HomeStudentViewController.m */,
+				75342BBA16E4F78000399800 /* NewsDetailViewController.h */,
+				75342BBB16E4F78000399800 /* NewsDetailViewController.m */,
 				2D9005C916D512C60073536B /* MoodleStudentViewController.h */,
 				2D9005CA16D512C70073536B /* MoodleStudentViewController.m */,
 				2D9DF85A16DBC1C600A5ED8E /* MoodleModuleDetailsViewController.h */,
 				2D9DF85B16DBC1C700A5ED8E /* MoodleModuleDetailsViewController.m */,
+				75FAD4A516E688F40015C00D /* MoodleFileViewController.h */,
+				75FAD4A616E688F40015C00D /* MoodleFileViewController.m */,
 				2D9005CD16D5258D0073536B /* LibraryStudentViewController.h */,
 				2D9005CE16D5258E0073536B /* LibraryStudentViewController.m */,
 				2D9005D516D528790073536B /* SolarStudentViewController.h */,
@@ -713,6 +727,8 @@
 				7565965E16DE55FD00872C9A /* LocationsMapViewController.m in Sources */,
 				755B188B16DEC2ED003686DF /* Annotation.m in Sources */,
 				758CAC9F16DF75D7001C347D /* NSMutableArray+PlistOperations.m in Sources */,
+				75342BBC16E4F78000399800 /* NewsDetailViewController.m in Sources */,
+				75FAD4A716E688F40015C00D /* MoodleFileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-
-#define kPostURL @"http://creative.coventry.ac.uk/~sinclaig/api/index.php/account/authenticate"
+//urls for CRUD operations on server
+#define kLoginURL @"http://robert-varga.com/cov_uni_app/index.php/account/authenticate"
 
 @interface LoginViewController : UIViewController <UITextFieldDelegate>
 
@@ -17,9 +17,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UIButton *loginButtonOutlet;
-@property (weak, nonatomic) IBOutlet UIButton *guestButtonOutlet;
+
 
 - (IBAction)loginButton:(id)sender;
-- (IBAction)guestButton:(id)sender;
 
 @end
