@@ -28,8 +28,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    //read data from plist
     self.list = [NSMutableArray loadDataFromPlist:@"ListData.plist" forKey:@"locations"];
+    
     [self customDesign];
 }
 
@@ -90,7 +92,7 @@
     cell.textLabel.text = [dict objectForKey:@"name"];
     cell.detailTextLabel.text = @"Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
 
-    cell.imageView.image = [UIImage imageNamed:@"ipad-list-item-selected.png"];
+    cell.imageView.image = [UIImage imageNamed:@"no_image.png"];
 
     return cell;
 }
@@ -106,7 +108,6 @@
         mmdvc.locationTitle = locationTitle;
         //location id
         mmdvc.locationid = (unsigned long)[cellPath indexAtPosition:1];
-
     }
 }
 

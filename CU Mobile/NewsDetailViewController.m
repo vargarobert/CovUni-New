@@ -25,9 +25,6 @@
     [self mbProgressHubWithSelector:@selector(newsFeed)];
 
     [self customDesign];
-    
-    
-
 }
 
 -(void)customDesign {
@@ -180,9 +177,10 @@
 //Event creation
 -(BOOL)createEvent:(EKEventStore*)eventStore{
     EKEvent *event = [EKEvent eventWithEventStore:eventStore];
+    //set event details
     event.title = [self.news objectForKey:@"title"];
     event.startDate = [NSDate dateWithTimeIntervalSince1970:[[self.news objectForKey:@"timestamp"] doubleValue]];  
-    event.endDate = [event.startDate dateByAddingTimeInterval:3600];
+    event.endDate = [event.startDate dateByAddingTimeInterval:3600]; //interval by default
     event.calendar = [eventStore defaultCalendarForNewEvents];
     
     NSError *error;

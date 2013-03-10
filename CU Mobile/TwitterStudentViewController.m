@@ -8,6 +8,7 @@
 
 #import "TwitterStudentViewController.h"
 #import "MBProgressHUD.h"
+#import "TwitterDetailViewController.h"
 
 @interface TwitterStudentViewController ()
 @property (nonatomic, strong) NSMutableArray *tweets;
@@ -117,14 +118,23 @@
     
     // Configure the cell for tweets
     cell.textLabel.text = [[self.tweets objectAtIndex:indexPath.row] objectForKey:@"from_user"];
-    cell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[self.tweets objectAtIndex:indexPath.row] objectForKey:@"profile_image_url"]]]];
+//    cell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[self.tweets objectAtIndex:indexPath.row] objectForKey:@"profile_image_url"]]]];
     cell.detailTextLabel.text = [[self.tweets objectAtIndex:indexPath.row] objectForKey:@"text"];
     
     
     return cell;
 }
 
-
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"TweeterDetailSegue"]) {
+        NSIndexPath *cellPath = [self.tableView indexPathForCell:sender];
+        NSString *title = [[self.tweets objectAtIndex:cellPath.row] objectForKey:@"from_user"];
+        NSString *body = [[self.tweets objectAtIndex:cellPath.row] objectForKey:@"text"];
+        TwitterDetailViewController *mvc = [segue destinationViewController];
+        mvc.Title = title;
+        mvc.Body = body;
+    }
+}
 
 /*
  // Override to support conditional editing of the table view.
