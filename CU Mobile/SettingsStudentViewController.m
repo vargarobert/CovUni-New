@@ -133,28 +133,36 @@
     int indexRow = [indexPath row];
     int indexSection = [indexPath section];
     
-    //set data for each cell in table view
-    if (indexRow == 0 && indexSection == 0) {
-        NSString *fullName = [NSString stringWithFormat:@"%@ %@",[self.userData objectForKey:@"forename"], [self.userData objectForKey:@"surname"]];
-        cell.textLabel.text = fullName;
-        cell.detailTextLabel.text = @"Name";
-    } else if(indexRow == 1 && indexSection == 0) {
-        cell.textLabel.text = [self.userData objectForKey:@"username"];
-        cell.detailTextLabel.text = @"Username";
-    } else if(indexRow == 2 && indexSection == 0) {
-        cell.textLabel.text = [self.userData objectForKey:@"studentid"];
-        cell.detailTextLabel.text = @"Student ID";
-    } else if(indexRow == 0 && indexSection == 1) {
-        cell.textLabel.text = @"Computing"; //data feed empty for course at the moment, [self.userData objectForKey:@"course"];
-        cell.detailTextLabel.text = @"Course";
-    } else if(indexRow == 1 && indexSection == 1) {
-        cell.textLabel.text = [self.userData objectForKey:@"printcredits"];
-        cell.detailTextLabel.text = @"Print credits";
-    } else if(indexRow == 0 && indexSection == 2) {
+    if (self.userData) {
+        //set data for each cell in table view
+        if (indexRow == 0 && indexSection == 0) {
+            NSString *fullName = [NSString stringWithFormat:@"%@ %@",[self.userData objectForKey:@"forename"], [self.userData objectForKey:@"surname"]];
+            cell.textLabel.text = fullName;
+            cell.detailTextLabel.text = @"Name";
+        } else if(indexRow == 1 && indexSection == 0) {
+            cell.textLabel.text = [self.userData objectForKey:@"username"];
+            cell.detailTextLabel.text = @"Username";
+        } else if(indexRow == 2 && indexSection == 0) {
+            cell.textLabel.text = [self.userData objectForKey:@"studentid"];
+            cell.detailTextLabel.text = @"Student ID";
+        } else if(indexRow == 0 && indexSection == 1) {
+            cell.textLabel.text = @"Computing"; //data feed empty for course at the moment, [self.userData objectForKey:@"course"];
+            cell.detailTextLabel.text = @"Course";
+        } else if(indexRow == 1 && indexSection == 1) {
+            cell.textLabel.text = [self.userData objectForKey:@"printcredits"];
+            cell.detailTextLabel.text = @"Print credits";
+        } 
+    } else {
+        //if no data is available
+        cell.textLabel.text = @"";
+        cell.detailTextLabel.text = @"";
+    }
+    
+    //Sign Out cell
+    if(indexRow == 0 && indexSection == 2) {
         cell.textLabel.text = @"Sign Out";
         cell.detailTextLabel.text = @"";
     }
-
     
     return cell;
 }
@@ -232,14 +240,11 @@
 -(void)deleteAuth {
     
     //DELETE SESSION (LOG OUT)
-//    NSString *key = [NSString stringWithFormat:@"Token=%@", [self.userDefaults stringForKey:@"token"]];
-
     NSURL *url=[NSURL URLWithString:kLogOutURL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"DELETE"];
     // Log out based on user's TOKEN (dummy data in web service)
     [request setValue:[self.userDefaults stringForKey:@"token"] forHTTPHeaderField:@"Token"];
-//    [request setHTTPBody:[key dataUsingEncoding:NSUTF8StringEncoding]];
 
     NSURLResponse *response;
     NSError *error;
